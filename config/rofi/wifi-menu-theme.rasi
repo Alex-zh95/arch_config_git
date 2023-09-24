@@ -1,0 +1,12 @@
+@theme "~/.config/rofi/config/network.rasi"
+
+configuration {
+/*modi: "window,drun,ssh,run";*/
+fixed-num-lines: false;
+}
+
+element-icon { 
+    size: 2.5ch;
+    padding: 10px;
+}
+

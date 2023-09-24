@@ -1,0 +1,6 @@
+include catppuccin-macchiato
+
+set recolor                     "true"
+
+set font                        "JetBrainsMono Nerd Font"
+set guioptions                  none

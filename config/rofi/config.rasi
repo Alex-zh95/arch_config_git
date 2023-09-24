@@ -1,0 +1,11 @@
+@theme "~/.config/rofi/config/launcher.rasi"
+
+configuration {
+/*modi: "window,drun,ssh,run";*/
+/*font: "JetBrainsMono Nerd Font 24";*/
+}
+
+element-icon { 
+    size: 2.5ch;
+    padding: 10px;
+}
