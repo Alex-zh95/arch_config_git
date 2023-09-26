@@ -1,6 +1,7 @@
 import os
 import shutil
 import re
+import argparse
 
 
 def copy_all(source_dir: str, dest_dir: str) -> None:
@@ -39,6 +40,11 @@ def get_backup_list(path: str) -> list[str]:
 
 
 if __name__ == "__main__":
+    # Set up the argument parser for direction of copy
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-r', '--restore', type=bool, default=False, required=False)
+    args = parser.parse_args()
+
     # Main folder path prefixes for source and destination
     source_folder = os.path.expanduser("~/.config")
 
@@ -48,6 +54,10 @@ if __name__ == "__main__":
     else:
         print('Please run this script from the root folder of this git repo.')
         exit(1)
+
+    # If we are in restore mode, swap destination and source around
+    if args.restore:
+        source_folder, destination_folder = destination_folder, source_folder
 
     # Get the list of all folders we want to back up
     directories = get_backup_list('setup_scripts/git_backup_list.txt')
