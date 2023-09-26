@@ -3,7 +3,7 @@
 1. Install neovim
 2. Copy over the the configs stored in .config/nvim
 
-To check current keybindings, use the cheatsheet via ""<leader>ch". The leader key by default is the space bar.
+To check current keybindings, use the cheatsheet via `<leader>ch`. The leader key by default is the space bar.
 
 ## Customizations
 
@@ -13,7 +13,7 @@ Customizations of the main NvChad files are in the "custom" subfolder of NvChad 
 
 ## Custom/chadrc.lua 
 
-This file overrides the file "default_lua.lua". Updates here include
+This file overrides the file "default.lua". Updates here include
 
 - UI themes,
 - Status bar color scheme
@@ -61,7 +61,7 @@ Saved configs here can be auto-installed via the command `:MasonInstallAll`.
 Default configuration only opens terminal of choice. Script within the package folder that allows for opening tmux with the name of the current directory as session.
 
 ```shell
-# In .setup/Package_list
+# In setup/Package_list
 cp tmux_session.sh ~/.local/bin/
 ```
 
