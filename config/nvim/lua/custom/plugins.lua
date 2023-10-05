@@ -82,10 +82,6 @@ local plugins = {
         config = function()
             require("kiwi").setup({
                 {
-                    name = "arch",
-                    path = '/home/chu/.setup/wiki/'
-                },
-                {
                     name = "personal",
                     path = "/home/chu/OneDrive/Dokumente/Notizen/"
                 }
