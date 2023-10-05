@@ -167,32 +167,16 @@ keys = [
             ),
 
         # MOVE WINDOWS UP OR DOWN (VIM KEYS)
-        Key([mod, "shift"], "k",
-            lazy.layout.shuffle_up()
-            ),
-        Key([mod, "shift"], "j",
-            lazy.layout.shuffle_down()
-            ),
-        Key([mod, "shift"], "h",
-            lazy.layout.shuffle_left()
-            ),
-        Key([mod, "shift"], "l",
-            lazy.layout.shuffle_right()
-            ),
+        Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+        Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+        Key([mod, "shift"], "h", lazy.layout.shuffle_left()),
+        Key([mod, "shift"], "l", lazy.layout.shuffle_right()),
 
         # MOVE WINDOWS UP OR DOWN (ARROW KEYS)
-        Key([mod, "shift"], "Up",
-            lazy.layout.shuffle_up()
-            ),
-        Key([mod, "shift"], "Down",
-            lazy.layout.shuffle_down()
-            ),
-        Key([mod, "shift"], "Left",
-            lazy.layout.shuffle_left()
-            ),
-        Key([mod, "shift"], "Right",
-            lazy.layout.shuffle_right()
-            ),
+        Key([mod, "shift"], "Up", lazy.layout.shuffle_up()),
+        Key([mod, "shift"], "Down", lazy.layout.shuffle_down()),
+        Key([mod, "shift"], "Left", lazy.layout.shuffle_left()),
+        Key([mod, "shift"], "Right", lazy.layout.shuffle_right()),
 
         Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc='Toggle floating mode'),
 ]
@@ -212,9 +196,10 @@ for i in groups:
 
 
 # Theme color definitions
-def init_colors():
-    return {
-            'background': ['#1e2030', '#1e2030'],
+def init_colors(invert=False):
+    result = {
+            'background': ['#1e203000', '#1e203000'],
+            'alt-foreground': ['#1e2030', '#1e2030'],
             'foreground': ['#cad3f5', '#cad3f5'],
             'green': ['#a6da95', '#a6da95'],
             'red': ['#ed8796', '#ed8796'],
@@ -225,8 +210,13 @@ def init_colors():
             'gray2': ['#8087a2', '#8087a2'],
             }
 
+    if invert:
+        result['foreground'], result['alt-foreground'] = result['alt-foreground'], result['foreground']
 
-colors = init_colors()
+    return result
+
+
+colors = init_colors(invert=False)
 
 
 def init_default_theme():
@@ -305,43 +295,10 @@ standard_sep = widget.Sep(
         background=colors['background']
         )
 
-max_button = widget.TextBox(
-        # Green stoplight: max button
-        font='JetBrainsMono Nerd Font',
-        text='',
-        padding=5,
-        foreground=colors['green'],
-        background=colors['background'],
-        fontsize=45,
-        mouse_callbacks={'Button1': lazy.window.toggle_fullscreen(), 'Button3': lazy.window.bring_to_front()}
-        )
-
-window_close = widget.TextBox(
-        # Red stoplight
-        font='JetBrainsMono Nerd Font',
-        text='',
-        foreground=colors['red'],
-        background=colors['background'],
-        padding=5,
-        fontsize=45,
-        mouse_callbacks={'Button1': session_kill, 'Button3': lazy.spawn(power_menu_cmd)}
-        )
-
-float_toggle = widget.TextBox(
-        # Yellow stoplight
-        font='JetBrainsMono Nerd Font',
-        text='',
-        foreground=colors['yellow'],
-        background=colors['background'],
-        padding=5,
-        fontsize=45,
-        mouse_callbacks={'Button1': lazy.window.toggle_floating()}
-        )
-
-
 battery_text = UPowerWidget(
         # battery_name=0,
         background=colors['background'],
+        foreground=colors['foreground'],
         battery_width=35,
         battery_height=15,
         border_charge_color=colors['green'],
@@ -383,6 +340,7 @@ status_notifier = widget.StatusNotifier(
 
 volume_control = widget.Volume(
         background=colors['background'],
+        foreground=colors['foreground'],
         font='JetBrainsMono Nerd Font',
         fontsize=24,
         fmt='󰓃 {}',
@@ -409,6 +367,11 @@ weather_widget = widget.GenPollText(
         update_interval=1800,
         func=poll_wttr,
         mouse_callbacks={'Button1': lazy.widget["genpolltext"].function(lambda w: w.update(w.poll()))}
+        )
+
+spacer = widget.Spacer(
+        background=colors['background'],
+        length=bar.STRETCH,
         )
 
 
@@ -461,9 +424,6 @@ def init_widgets_list(screen_id=1) -> list:
             standard_sep,
             weather_widget,
             standard_sep,
-            window_close,
-            float_toggle,
-            max_button,
             window_name,
             standard_sep,
             battery_text,
@@ -488,9 +448,9 @@ def init_screens():
     opacity = 0.75
 
     return [
-            Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=bar_size, opacity=opacity)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=bar_size, opacity=opacity)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=bar_size, opacity=opacity))
+            Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=bar_size, opacity=opacity, background='#00000000')),
+            Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=bar_size, opacity=opacity, background='#00000000')),
+            Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=bar_size, opacity=opacity, background='#00000000'))
             ]
 
 
@@ -539,7 +499,7 @@ def set_floating(window):
 floating_types = ["notification", "toolbar", "splash", "dialog"]
 follow_mouse_focus = False
 bring_front_click = True
-cursor_warp = True  # From docs: Cursor follows keyboard focus
+cursor_warp = False  # From docs: Cursor follows keyboard focus
 auto_fullscreen = True
 focus_on_window_activation = "smart"  # or focus
 wmname = "LG3D"
