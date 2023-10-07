@@ -290,7 +290,7 @@ layouts = [
 # Initialization of persistent window objects
 standard_sep = widget.Sep(
         linewidth=1,
-        padding=10,
+        padding=20,
         foreground=colors['foreground'],
         background=colors['background']
         )
@@ -497,7 +497,7 @@ def set_floating(window):
 
 
 floating_types = ["notification", "toolbar", "splash", "dialog"]
-follow_mouse_focus = False
+follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False  # From docs: Cursor follows keyboard focus
 auto_fullscreen = True

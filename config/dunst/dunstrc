@@ -90,7 +90,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#8aadf4"
+    # frame_color = "#1e2030"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -196,7 +196,8 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita
+    # icon_theme = Adwaita
+    icon_theme = Dracula
     # You can also set multiple icon themes, with the leftmost one being used first.
     # icon_theme = "Adwaita, breeze"
 
@@ -245,7 +246,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 25
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -310,7 +311,7 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#24273a"
     foreground = "#cad3f5"
-    frame_color = "#8aadf4"
+    frame_color = "#1e2030"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -318,7 +319,7 @@
 [urgency_normal]
     background = "#24273a"
     foreground = "#cad3f5"
-    frame_color = "#8aadf4"
+    # frame_color = "#1e2030"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
