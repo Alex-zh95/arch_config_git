@@ -16,6 +16,7 @@ home = os.path.expanduser('~')
 # Common command txts
 power_menu_cmd = f"rofi -show power-menu -modi power-menu:rofi-power-menu -theme {home}/.config/rofi/config/powermenu.rasi"
 show_window_cmd = f'rofi -show window -theme {home}/.config/rofi/config/window_lst.rasi'
+calc_cmd = 'rofi -show calc -modi calc -no-show-match -no-sort'
 
 # Define all the default layouts and groups
 groups = []
@@ -87,6 +88,7 @@ keys = [
         Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
         Key([mod], "b", lazy.window.bring_to_front(), desc="Bring hidden floating windows behind to front"),
         Key([mod], "m", lazy.spawn(show_window_cmd), desc="Launch rofi window browser"),
+        Key([mod], "c", lazy.spawn(calc_cmd), desc="Launch quick calculator"),
 
         # Screen movement
         Key([mod], 'w', lazy.next_screen(), desc='Next monitor'),
