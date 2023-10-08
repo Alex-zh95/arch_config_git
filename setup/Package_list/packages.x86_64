@@ -307,8 +307,9 @@ ripgrep
 # Application launcher
 rofi 
 
-# Power menu extension (AUR)
+# Rofi extneions (AUR)
 rofi-power-menu
+rofi-calc
 
 rxvt-unicode
 #timeshift
