@@ -19,13 +19,13 @@ all=(shutdown reboot suspend hibernate logout lockscreen)
 show=("${all[@]}")
 
 declare -A texts
-texts[lockscreen]=""
-texts[switchuser]=""
-texts[logout]=""
-texts[suspend]=""
-texts[hibernate]=""
-texts[reboot]=""
-texts[shutdown]=""
+texts[lockscreen]="Lock"
+texts[switchuser]="Switch user"
+texts[logout]="Log out"
+texts[suspend]="Suspend"
+texts[hibernate]="Hibernate"
+texts[reboot]="Reboot"
+texts[shutdown]="Shutdown"
 
 declare -A icons
 icons[lockscreen]=""
@@ -39,20 +39,20 @@ icons[cancel]=""
 
 declare -A actions
 actions[lockscreen]="loginctl lock-session ${XDG_SESSION_ID}"
-#actions[switchuser]="???"
-actions[logout]="loginctl kill-session ${XDG_SESSION_ID}"
+actions[switchuser]="???"
+actions[logout]="loginctl kill-session self"
 actions[suspend]="systemctl suspend"
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="/usr/bin/reboot"
 actions[shutdown]="/usr/bin/shutdown now"
 
 # By default, ask for confirmation for actions that are irreversible
-confirmations=(reboot shutdown logout)
+confirmations=()
 
 # By default, no dry run
 dryrun=false
 showsymbols=true
-showtext=true
+showtext=false
 
 function check_valid {
     option="$1"
