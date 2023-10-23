@@ -82,9 +82,10 @@ def window_to_next_group(qtile):
 keys = [
         Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
         Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
-        Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad."),
+        Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad"),
         Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
-        Key([mod], "q", lazy.window.kill(), desc='Close window'),
+        # Key([mod], "q", lazy.window.kill(), desc='Close window'),
+        Key([mod], "q", session_kill(), desc='Close window - shutdown menu if no apps running'),
         Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
         Key([mod], "b", lazy.window.bring_to_front(), desc="Bring hidden floating windows behind to front"),
         Key([mod], "m", lazy.spawn(show_window_cmd), desc="Launch rofi window browser"),
@@ -236,11 +237,12 @@ default_theme = init_default_theme()
 column_theme = init_default_theme()
 column_theme['border_focus_stack'] = colors['orange']
 column_theme['border_normal_stack'] = colors['background']
+column_theme['border_on_single'] = True
 
 # Max theme - no margins needed
 max_theme = init_default_theme()
 max_theme["margin"] = 0
-max_theme["border_width"] = 0
+max_theme['border_width'] = 0
 
 floating_layout = layout.Floating(
         float_rules=[
@@ -275,8 +277,8 @@ floating_layout = layout.Floating(
             ],
         fullscreen_border_width=0,
         border_width=4,
-        border_focus=colors['blue'],
-        border_normal=colors['background']
+        border_normal=colors['background'],
+        border_focus=colors['foreground']
         )
 
 layouts = [
@@ -396,13 +398,13 @@ def init_widgets_list(screen_id=1) -> list:
             borderwidth=5,
             disable_drag=True,
             active=colors['foreground'],
-            inactive=colors['gray'],
+            inactive=colors['gray2'],
             rounded=False,
             highlight_method="line",
             highlight_color=colors['background'],
             this_current_screen_border=colors['orange'],  # When focused
-            this_screen_border=colors['gray'],  # When un-focused
-            other_screen_border=colors['gray'],  # When focused
+            this_screen_border=colors['gray2'],  # When un-focused
+            other_screen_border=colors['gray2'],  # When focused
             other_current_screen_border=colors['gray2'],  # When un-focused
             hide_unused=True,
             foreground=colors['foreground'],
@@ -463,7 +465,7 @@ screens = init_screens()
 mouse = [
         Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
         Drag([mod, "control"], "Button1", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-        Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size())
+        Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
         ]
 
 dgroups_key_binder = None

@@ -13,10 +13,18 @@ require("lspconfig").pylsp.setup{
         pylsp = {
             plugins = {
                 pycodestyle = {
-                    maxLineLength = 1000,
+                    ignore = {
+                        'W605',  -- Ignore invalid escape sequence warning
+                        'E501',  -- Ignore line length warning (we have text wrapping enabled)
+                        'E402',  -- Ignore file import not at top of line (some scripts need preamble for relative imports)
+                    }
                 },
                 flake8 = {
-                    maxLineLength = 1000,
+                    ignore = {
+                        'W605',  -- Ignore invalid escape sequence warning
+                        'E501',  -- Ignore line length warning (we have text wrapping enabled)
+                        'E402',  -- Ignore file import not at top of line (some scripts need preamble for relative imports)
+                    }
                 }
             }
         }

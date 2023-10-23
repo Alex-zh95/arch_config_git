@@ -33,7 +33,6 @@ run fcitx5 &
 run xfce4-power-manager &
 run blueman-applet &
 run volumeicon &
-run guake&
 
 numlockx on &
 dunst &
