@@ -357,20 +357,9 @@ wifi_widget = widget.Wlan(
         interface='wlo1',  # Check this string via iwconfig
         font='JetBrainsMono Nerd Font',
         fontsize=24,
-        format='   {essid} {percent:2.0%}',
+        format='  {essid} {percent:2.0%}',
         disconnected_message='󰤮 ',
         mouse_callbacks={'Button1': lazy.spawn('rofi-wifi-menu'), 'Button3': lazy.spawn('nm-connection-editor')}
-        )
-
-# Better weather widget than Wttr for querying current location (don't need additiona IP info)
-weather_widget = widget.GenPollText(
-        background=colors['background'],
-        foreground=colors['foreground'],
-        font='JetBrainsMono Nerd Font',
-        fontsize=24,
-        update_interval=1800,
-        func=poll_wttr,
-        mouse_callbacks={'Button1': lazy.widget["genpolltext"].function(lambda w: w.update(w.poll()))}
         )
 
 spacer = widget.Spacer(
@@ -426,14 +415,13 @@ def init_widgets_list(screen_id=1) -> list:
             standard_sep,
             current_layout_icon,
             standard_sep,
-            weather_widget,
+            wifi_widget,
             standard_sep,
             window_name,
             standard_sep,
             battery_text,
             status_notifier,
             volume_control,
-            wifi_widget,
             standard_sep,
             memory_display,
             clock_widget,
