@@ -4,7 +4,6 @@ from libqtile import qtile, layout, bar, widget, hook
 from libqtile.config import Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
 from extras.upower import UPowerWidget
-from extras.location_service import poll_wttr
 from libqtile.backend.wayland import InputConfig
 
 # mod4 or mod = super key
