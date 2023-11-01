@@ -1,0 +1,7 @@
+# Addtional keybinds not supported in Qtile
+
+# Brightness controls
+XF86MonBrightnessUp; @XF86MonBrightnessUp
+    brightnessctl set +5%
+XF86MonBrightnessDown; @XF86MonBrightnessDown
+    brightnessctl set 5%-

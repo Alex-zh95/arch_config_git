@@ -29,8 +29,7 @@ keybLayout=$(setxkbmap -v | awk -F "+" '/symbols/ {print $2}')
 
 #starting utility applications at boot time
 run fcitx5 & 
-# run nm-applet &
-run xfce4-power-manager &
+run sxhkd &
 run blueman-applet &
 run volumeicon &
 

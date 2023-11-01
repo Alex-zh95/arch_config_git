@@ -501,6 +501,10 @@ sddm
 # Enable volume icon widget
 volumeicon 
 
+# Additional key bind and brightness controls
+sxhkd
+brightnessctl
+
 # via Arco repos - modified picom for animated window movements + improved transparency
 picom-jonaburg-git
 
@@ -515,7 +519,6 @@ thunar
 thunar-volman
 xfce4-appfinder
 xfce4-panel
-xfce4-power-manager
 xfce4-settings
 ristretto
 thunar-archive-plugin
