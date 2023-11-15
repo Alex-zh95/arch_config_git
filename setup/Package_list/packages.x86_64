@@ -277,6 +277,7 @@ vlc
 jq
 xss-lock
 i3lock-color
+x86_energy_perf_policy
 
 # Spell-checkers
 hunspell
