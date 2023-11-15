@@ -120,7 +120,6 @@ export VISUAL='nvim'
 
 # GTK backend for XWayland:
 export GDK_BACKEND=x11
-export GTK_THEME="Catppuccin-Macchiato-Standard-Peach-dark"
 
 #PS1='[\u@\h \W]\$ '
 
@@ -214,11 +213,6 @@ alias update-fc='sudo fc-cache -fv'
 alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
 #backup contents of /etc/skel to hidden backup folder in home/user
 alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-
-#copy shell configs
-#alias cb='cp /etc/skel/.bashrc ~/.bashrc && echo "Copied."'
-#alias cz='cp /etc/skel/.zshrc ~/.zshrc && exec zsh'
-#alias cf='cp /etc/skel/.config/fish/config.fish ~/.config/fish/config.fish && echo "Copied."'
 
 #switch between bash and zsh
 alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
@@ -347,6 +341,7 @@ alias nneofetch="$EDITOR ~/.config/neofetch/config.conf"
 alias nqtile="$EDITOR ~/.config/qtile/config.py"
 alias tqtile="python ~/.config/qtile/config.py"
 alias nautostart="$EDITOR ~/.config/qtile/scripts/autostart.sh"
+
 #reading logs with bat
 alias lcalamares="bat /var/log/Calamares.log"
 alias lpacman="bat /var/log/pacman.log"
@@ -433,16 +428,6 @@ alias laptoponly='~/.config/qtile/Laptop_Screen_Only.sh'
 alias screenout='~/.config/qtile/screens.py'
 alias asc='~/.config/qtile/auto_scr.sh'
 alias autoscr='~/.config/qtile/auto_scr.sh'
-
-# Pipenvs - activate an existing shell with a selector via fzf
-function activate_venv() {
-    local selected_env
-    selected_env=$(ls $HOME/.local/share/virtualenvs/ | fzf --height 30% --reverse)
-
-    if [ -n "$selected_env" ]; then
-        source "$HOME/.local/share/virtualenvs/$selected_env/bin/activate"
-    fi
-}
 
 # Fuzzy cd'ing into directories (requires fzf)
 alias sd='cd $HOME && cd "$(find . -type d | fzf --height 30% --reverse)"'
