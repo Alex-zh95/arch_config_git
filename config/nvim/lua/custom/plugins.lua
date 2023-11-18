@@ -6,7 +6,8 @@ local plugins = {
             ensure_installed = {
                 "debugpy",
                 "python-lsp-server",
-                "pylint"
+                "pylint",
+                "marksman"
             }
         }
     },

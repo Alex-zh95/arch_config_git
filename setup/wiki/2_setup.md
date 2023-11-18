@@ -94,3 +94,21 @@ for line in lines:
 print('Done.')
 file.close()
 ```
+
+# Intel Stromsparmodus
+
+Mit dem Paket `x86_energy_perf_policy` den Stromsparmodus bestimmen.
+
+| EPB Wert | String                     |
+| ------   | ---------------            |
+| 0        | performance (Hochleistung) |
+| 4        | balance-performance        |
+| 6        | normal, default            |
+| 8        | balance-power              |
+| 15       | power (Stromsparmodus)     |
+
+Mit Root-Rechten ausführen:
+
+```shell
+sudo x86_energy_perf_policy --epb <epb_Wert>
+```

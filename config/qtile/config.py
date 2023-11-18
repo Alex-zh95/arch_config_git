@@ -81,7 +81,7 @@ def window_to_next_group(qtile):
 
 keys = [
     Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
-    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
+    Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
     Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
     Key([mod], "q", session_kill(), desc='Close window - shutdown menu if no apps running'),
@@ -109,8 +109,8 @@ keys = [
     Key([mod, "shift"], "s", lazy.spawn('xfce4-screenshooter -r -o ristretto')),
 
     # QTILE LAYOUT KEYS
-    Key([mod], "space", lazy.next_layout()),
-    Key([mod, "shift"], "space", lazy.prev_layout()),
+    Key([mod], "tab", lazy.next_layout()),
+    Key([mod, "shift"], "tab", lazy.prev_layout()),
 
     # CHANGE FOCUS
     Key([mod], "Up", lazy.layout.up()),
