@@ -106,7 +106,6 @@ keys = [
     Key([mod, "shift"], "q", lazy.spawn(power_menu_cmd), desc="Power menu"),
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "shift"], "b", lazy.spawn("bluetooth toggle"), desc="Toggle bluetooth radio"),
-    Key([mod, "shift"], "w", lazy.spawn("rofi-wifi-menu"), desc="Wifi scan"),
 
     # Screenshot
     Key([mod, "shift"], "s", lazy.spawn('xfce4-screenshooter -r -o ristretto')),
