@@ -32,6 +32,7 @@ run fcitx5 &
 run sxhkd &
 run blueman-applet &
 run volumeicon &
+run nm-applet --indicator &
 
 numlockx on &
 dunst &

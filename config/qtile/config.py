@@ -3,8 +3,11 @@ import subprocess
 from libqtile import qtile, layout, bar, widget, hook
 from libqtile.config import Drag, Group, Key, Match, Screen
 from libqtile.command import lazy
-from extras.upower import UPowerWidget
 from libqtile.backend.wayland import InputConfig
+
+from extras.upower import UPowerWidget
+from extras.statusnotifier import StatusNotifier
+from extras.currentlayout import CurrentLayoutIcon
 
 # mod4 or mod = super key
 mod = "mod4"
@@ -335,10 +338,20 @@ clock_widget = widget.Clock(
     format="  %Y-%m-%d 󰥔 %H:%M "
 )
 
-status_notifier = widget.StatusNotifier(
+status_notifier = StatusNotifier(
     background=colors['background'],
     icon_size=32,
-    padding=4
+    padding=4,
+
+    # Following attributes are custom and not from standard Qtile StatusNotifier
+    menu_background=colors['alt-foreground'],  # Use the non-transparent version
+    menu_font="JetBrainsMono Nerd Font",
+    menu_fontsize=24,
+    menu_foreground=colors['foreground'],
+    menu_foreground_disabled=colors['gray2'],
+    separator_colour=colors['blue'],
+    menu_icon_size=24,
+    menu_width=750,
 )
 
 volume_control = widget.Volume(
@@ -388,11 +401,12 @@ backlight_widget = widget.Backlight(
 
 def init_widgets_list(screen_id=1) -> list:
     # Initializing widgets that depend on screen and content on screen
-    current_layout_icon = widget.CurrentLayoutIcon(
-        custom_icon_paths=[home + "/.config/qtile/icons"],
-        scale=0.7,
-        foreground=colors['foreground'],
-        background=colors['background']
+    current_layout_icon = CurrentLayoutIcon(
+        # custom_icon_paths=[home + "/.config/qtile/icons"],
+        scale=0.6,
+        foreground=colors['orange'],
+        background=colors['background'],
+        use_mask=True,
     )
 
     group_box = widget.GroupBox(
@@ -433,8 +447,8 @@ def init_widgets_list(screen_id=1) -> list:
         standard_sep,
         current_layout_icon,
         standard_sep,
-        wifi_widget,
-        standard_sep,
+        # wifi_widget,
+        # standard_sep,
         window_name,
         standard_sep,
         battery_text,
