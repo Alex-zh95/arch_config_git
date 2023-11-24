@@ -32,10 +32,12 @@ run fcitx5 &
 run sxhkd &
 run blueman-applet &
 run volumeicon &
-run nm-applet --indicator &
 
 numlockx on &
 dunst &
 picom --config $HOME/.config/qtile/scripts/picom.conf &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 xss-lock $HOME/.config/qtile/scripts/lock.sh &
+
+# nm-applet does not appear in bar if loaded too early
+run nm-applet --indicator &

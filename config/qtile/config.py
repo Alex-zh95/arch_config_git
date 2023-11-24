@@ -309,14 +309,14 @@ battery_text = UPowerWidget(
     border_charge_color=colors['green'],
     border_color=colors['foreground'],
     border_critical_color=colors['red'],
-    font='JetBrainsMono Nerd Font',
+    font='JetBrainsMono NF',
     fontsize=24,
     text_charging='{percentage:.0f}% (󰠠 {ttf})',
     text_discharging='{percentage:.0f}%',
 )
 
 memory_display = widget.Memory(
-    font="JetBrainsMono Nerd Font",
+    font="JetBrainsMono NF",
     format='  {MemUsed:,.1f}G/{MemTotal:,.1f}G',
     measure_mem='G',
     measure_wap='G',
@@ -329,7 +329,7 @@ memory_display = widget.Memory(
 )
 
 clock_widget = widget.Clock(
-    font="JetBrainsMono Nerd Font",
+    font="JetBrainsMono NF",
     foreground=colors['foreground'],
     background=colors['background'],
     fontsize=24,
@@ -344,7 +344,7 @@ status_notifier = StatusNotifier(
 
     # Following attributes are custom and not from standard Qtile StatusNotifier
     menu_background=colors['alt-foreground'],  # Use the non-transparent version
-    menu_font="JetBrainsMono Nerd Font",
+    menu_font="JetBrainsMono NF",
     menu_fontsize=24,
     menu_foreground=colors['foreground'],
     menu_foreground_disabled=colors['gray2'],
@@ -356,7 +356,7 @@ status_notifier = StatusNotifier(
 volume_control = widget.Volume(
     background=colors['background'],
     foreground=colors['foreground'],
-    font='JetBrainsMono Nerd Font',
+    font='JetBrainsMono NF',
     fontsize=24,
     fmt='󰓃 {}',
     mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}
@@ -366,7 +366,7 @@ wifi_widget = widget.Wlan(
     background=colors['background'],
     foreground=colors['foreground'],
     interface='wlo1',  # Check this string via iwconfig
-    font='JetBrainsMono Nerd Font',
+    font='JetBrainsMono NF',
     fontsize=24,
     format='  {essid} {percent:2.0%}',
     disconnected_message='󰤮 ',
@@ -385,7 +385,7 @@ backlight_widget = widget.Backlight(
     background=colors['background'],
     foreground=colors['foreground'],
     backlight_name='intel_backlight',  # Use cmd 'ls /sys/class/backlight/' to query name
-    font='JetBrainsMono Nerd Font',
+    font='JetBrainsMono NF',
     format='  {percent:2.0%}',
     step=0.5,
     fontsize=24,
@@ -409,7 +409,7 @@ def init_widgets_list(screen_id=1) -> list:
     )
 
     group_box = widget.GroupBox(
-        font="JetBrainsMono Nerd Font",
+        font="JetBrainsMono NF",
         fontsize=24,
         margin_y=4,
         margin_x=0,
@@ -434,7 +434,7 @@ def init_widgets_list(screen_id=1) -> list:
     window_name = widget.WindowName(
         foreground=colors['foreground'],
         background=colors['background'],
-        font='JetBrainsMono Nerd Font',
+        font='JetBrainsMono NF',
         empty_group_string='',
         fontsize=24,
         mouse_callbacks={'Button1': lazy.spawn("rofi -show drun"), 'Button3': lazy.spawn(show_window_cmd)},
@@ -512,6 +512,8 @@ def start_always():
         # Set the cursor to something sane in X
         subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
         subprocess.run(['feh', '--bg-fill', home + '/Bilder/background.png', '&'])
+
+        subprocess.call([home + '/.config/qtile/scripts/restart.sh'])
 
 
 @hook.subscribe.client_new
