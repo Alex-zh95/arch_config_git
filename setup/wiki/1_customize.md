@@ -39,12 +39,15 @@ sudo systemctl start caps-to-esc.service
 # Font customizations
 
 ## GTK
+
 Font customizations are often done within the config files of respective applications. E.g. font settings are in the config.rasi file for Alacritty or font desginations within qtile's `config.py`. For other applications that depend for example on the GTK libraries, we can either use the application "lxappearance" or we can directly modify GTK settings file:
 
 ```bash
 vim ~/.config/gtk-3.0/settings.ini
 ```
+
 Themes, fonts, icons can be modified by their respective fields. E.g.
+
 ```xml
 [Settings]
 gtk-theme-name=Arc-Slate-grey-Dark
@@ -53,6 +56,7 @@ gtk-font-name=Noto Sans 11
 gtk-cursor-theme-name=Dracula-cursors
 gtk-cursor-theme-size=0
 ```
+
 Then log out and log back in to see modifications.
 
 ## GTK-4
@@ -88,4 +92,12 @@ HibernateMode=shutdown
 
 # Neovim
 
-We start NeoVim customization via NvChad (credits go to [https://github.com/NvChad/NvChad](NvChad GitHub page) for a good default set-up). Copy the nvim config into the .config directory to get an IDE for Neovim.
+We start NeoVim customization via NvChad (credits go to [https://github.com/NvChad/NvChad](NvChad GitHub page) for a good default set-up).
+
+Use following script to get NvChad base (git repo, update via git):
+
+```bash
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+```
+
+Copy the nvim config into the .config directory to get an IDE for Neovim.
