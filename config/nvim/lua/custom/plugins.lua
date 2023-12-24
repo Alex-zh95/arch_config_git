@@ -67,27 +67,11 @@ local plugins = {
         end
     },
 
-    -- vim-tmux-navigator (being able to hop to tmux splits from vim via Ctrl keys)
+    -- Integration with multiplexers
     {
-        "christoomey/vim-tmux-navigator",
+        -- "christoomey/vim-tmux-navigator",  -- tmux
+        "mrjones2014/smart-splits.nvim",
         lazy = false,
-    },
-
-    -- VimWiki for managing notes
-    {
-        "serenevoid/kiwi.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim"
-        },
-        lazy = false,
-        config = function()
-            require("kiwi").setup({
-                {
-                    name = "personal",
-                    path = "/home/chu/OneDrive/Dokumente/Notizen/"
-                }
-            })
-        end,
     },
 
     -- Better format of markdown text (e.g. tables)

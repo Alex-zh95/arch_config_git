@@ -1,0 +1,5 @@
+[General]
+theme=Sweet
+
+[Applications]
+Default=virtualbox

@@ -6,10 +6,10 @@ fcitx5
 gtk-2.0
 gtk-3.0
 gtk-4.0
+Kvantum
 nvim/lua/custom
 qtile
 sxhkd
 ranger
 rofi
-tmux
-zathura
+wezterm

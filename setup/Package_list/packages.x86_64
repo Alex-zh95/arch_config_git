@@ -238,13 +238,10 @@ meld
 adobe-source-sans-fonts
 awesome-terminal-fonts
 noto-fonts
-# ttf-dejavu
-# ttf-droid
-# ttf-roboto
-# ttf-roboto-mono
 ttf-ubuntu-font-family
 ttf-meslo-nerd-font-powerlevel10k
 ttf-jetbrains-mono-nerd
+ttf-font-awesome
 
 ###themes
 arc-gtk-theme
@@ -337,9 +334,6 @@ zsh-syntax-highlighting
 ###cursors
 capitaine-cursors
 
-###fonts
-ttf-font-awesome
-
 ###icons
 sardi-icons
 surfn-icons-git
@@ -352,7 +346,7 @@ nordzy-icon-theme-git
 mkinitcpio-openswap
 
 ###utilities-repo
-alacritty
+wezterm
 guake
 appstream
 archiso
@@ -546,7 +540,6 @@ python-dbus-next
 # Terminal tools - file manager, fuzzy search and image display
 ranger
 fzf
-ueberzug
 
 # Browser and automation driver
 google-chrome

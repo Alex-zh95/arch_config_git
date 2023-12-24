@@ -4,21 +4,21 @@ local M = {}
 
 M.general = {
     n = {
-        ["<C-h>"] = {"<cmd> TmuxNavigateLeft<cr>", "Window left"},
-        ["<C-l>"] = {"<cmd> TmuxNavigateRight<cr>", "Window right"},
-        ["<C-j>"] = {"<cmd> TmuxNavigateDown<cr>", "Window down"},
-        ["<C-k>"] = {"<cmd> TmuxNavigateUp<cr>", "Window up"}
+        ["C-h"] = {"<cmd>lua require('smart-splits').move_cursor_left<cr>", "Window left"},
+        ["C-j"] = {"<cmd>lua require('smart-splits').move_cursor_down<cr>", "Window down"},
+        ["C-k"] = {"<cmd>lua require('smart-splits').move_cursor_up<cr>", "Window up"},
+        ["C-l"] = {"<cmd>lua require('smart-splits').move_cursor_right<cr>", "Window right"},
     },
-
-    i = {
-        ["<C-h>"] = {"<cmd> TmuxNavigateLeft<cr>", "Window left"},
-        ["<C-l>"] = {"<cmd> TmuxNavigateRight<cr>", "Window right"},
-        ["<C-j>"] = {"<cmd> TmuxNavigateDown<cr>", "Window down"},
-        ["<C-k>"] = {"<cmd> TmuxNavigateUp<cr>", "Window up"}
-    },
-
     v = {
         ["<C-a>"] = {":EasyAlign*<Bar><Enter>", "Align markdown tables"}
+    }
+}
+
+M.spell = {
+    n = {
+        ["<leader>s"] = {":set spell<cr>", "Toggle spell checcker"},
+        ["<leader>sen"] = {":set spelllang=en_us<cr>", "Set spell check language to US English"},
+        ["<leader>sde"] = {":set spelllang=de<cr>", "Set spell check language to German"},
     }
 }
 
@@ -46,7 +46,7 @@ M.disabled = {
 
 M.lspconfig = {
     n = {
-        -- Remapped the hover key to somthing else
+        -- Remapped the hover key to something else
         ["<leader>k"] = {
             function()
                 vim.lsp.buf.hover()
@@ -60,10 +60,10 @@ M.vim_misc = {
     n = {
         ["<leader>h"] = {"<cmd>vsplit<CR>", "Nvim horizontal split"},
         ["<leader>v"] = {"<cmd>split<CR>", "Nvim vertical split"},
-        ["H"] = { ":wincmd < <CR>", "divider left"},
-        ["L"] = { ":wincmd > <CR>", "divider right"},
-        ["K"] = { ":wincmd + <CR>", "divider up"},
-        ["J"] = { ":wincmd - <CR>", "divider down"},
+        -- ["H"] = { ":wincmd < <CR>", "divider left"},
+        -- ["L"] = { ":wincmd > <CR>", "divider right"},
+        -- ["K"] = { ":wincmd + <CR>", "divider up"},
+        -- ["J"] = { ":wincmd - <CR>", "divider down"},
         ["<leader>z"] = {":ZenMode<CR>", 'Toggle zen mode'},
     }
 }
@@ -126,21 +126,21 @@ M.nvterm = {
 
     t = {
         -- toggle in terminal mode
-        ["<A-i>"] = {
+        ["<leader>tf"] = {
             function()
                 require("nvterm.terminal").toggle "float"
             end,
             "toggle floating term",
         },
 
-        ["<A-v>"] = {
+        ["<leader>th"] = {
             function()
                 require("nvterm.terminal").toggle "horizontal"
             end,
             "toggle horizontal term",
         },
 
-        ["<A-h>"] = {
+        ["<leader>tv"] = {
             function()
                 require("nvterm.terminal").toggle "vertical"
             end,
@@ -150,21 +150,21 @@ M.nvterm = {
 
     n = {
         -- toggle in normal mode
-        ["<A-i>"] = {
+        ["<leader>tf"] = {
             function()
                 require("nvterm.terminal").toggle "float"
             end,
             "toggle floating term",
         },
 
-        ["<A-v>"] = {
+        ["<leader>th"] = {
             function()
                 require("nvterm.terminal").toggle "horizontal"
             end,
             "toggle horizontal term",
         },
 
-        ["<A-h>"] = {
+        ["<leader>tv"] = {
             function()
                 require("nvterm.terminal").toggle "vertical"
             end,
@@ -173,39 +173,4 @@ M.nvterm = {
     },
 }
 
-M.vimwiki = {
-    n = {
-        ["<leader>ww"] = {
-            function()
-                local kiwi = require("kiwi")
-                kiwi.open_wiki_index()
-            end,
-            "Open VimWiki's index",
-        },
-
-        ["<leader>wn"] = {
-            function()
-                local kiwi = require("kiwi")
-                kiwi.create_or_open_wiki_file()
-            end,
-            "Create or open Wiki entry on highlighting word",
-        },
-
-        ["<leader>wl"] = {
-            function()
-                local kiwi = require("kiwi")
-                kiwi.open_link()
-            end,
-            "Open link under cursor",
-        },
-
-        ["<leader>wx"] = {
-            function()
-                local kiwi = require("kiwi")
-                kiwi.todo.toggle()
-            end,
-            "VimWiki toggle",
-        },
-    }
-}
 return M

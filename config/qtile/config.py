@@ -83,7 +83,7 @@ def window_to_next_group(qtile):
 
 
 keys = [
-    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn("wezterm"), desc="Launch terminal"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
     Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
@@ -100,12 +100,8 @@ keys = [
     # TOGGLE SPLIT FUNCTIONS FOR COLUMN/STACK LAYOUT
     Key([mod], "s", lazy.layout.toggle_split(), desc='Toggle column to stack'),
 
-    Key([mod], "t", lazy.spawn("thunar"), desc="Load file explorer UI"),
-
-    Key([mod, "shift"], "Return", lazy.spawn("alacritty -e tmux new-session ranger"), desc="Load file explorer UI"),
     Key([mod, "shift"], "q", lazy.spawn(power_menu_cmd), desc="Power menu"),
     Key([mod, "shift"], "r", lazy.restart()),
-    Key([mod, "shift"], "b", lazy.spawn("bluetooth toggle"), desc="Toggle bluetooth radio"),
 
     # Screenshot
     Key([mod, "shift"], "s", lazy.spawn('xfce4-screenshooter -r -o ristretto')),
