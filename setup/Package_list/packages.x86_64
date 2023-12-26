@@ -591,4 +591,8 @@ interception-caps2esc
 # Cleanup tool
 bleachbit
 
+# Spotify
+spotify
+spicetify-cli
+
 ## EOF
