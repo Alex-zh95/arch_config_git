@@ -1,5 +1,5 @@
 [General]
-theme=Sweet
+theme=Catppuccin-Macchiato-Peach
 
 [Applications]
 Default=virtualbox

@@ -4,10 +4,11 @@ local M = {}
 
 M.general = {
     n = {
-        ["C-h"] = {"<cmd>lua require('smart-splits').move_cursor_left<cr>", "Window left"},
-        ["C-j"] = {"<cmd>lua require('smart-splits').move_cursor_down<cr>", "Window down"},
-        ["C-k"] = {"<cmd>lua require('smart-splits').move_cursor_up<cr>", "Window up"},
-        ["C-l"] = {"<cmd>lua require('smart-splits').move_cursor_right<cr>", "Window right"},
+        -- switch between windows
+        ["H"] = { "<C-w>h", "Window left" },
+        ["L"] = { "<C-w>l", "Window right" },
+        ["J"] = { "<C-w>j", "Window down" },
+        ["K"] = { "<C-w>k", "Window up" },
     },
     v = {
         ["<C-a>"] = {":EasyAlign*<Bar><Enter>", "Align markdown tables"}

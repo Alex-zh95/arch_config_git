@@ -14,12 +14,14 @@ end
 
 -- For example, changing the color scheme:
 config.color_scheme = 'Catppuccin Macchiato'
+-- config.color_scheme = 'Catppuccin Mocha'
 
 -- Font
-config.font_size = 8
+config.font_size = 9
 config.font = wezterm.font_with_fallback {
     'JetBrains Mono',
-    'DengXian'
+    -- 'JetBrains Mono NF',
+    'Source Hans Sans CN'
 }
 
 -- Tab bar
@@ -126,7 +128,7 @@ config.keys = {
     -- Close
     {
         mods = "CTRL",
-        key = 'w',
+        key = 'q',
         action = wezterm.action.CloseCurrentPane { confirm = false },
     },
 

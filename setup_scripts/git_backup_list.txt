@@ -12,4 +12,5 @@ qtile
 sxhkd
 ranger
 rofi
+spicetify
 wezterm
