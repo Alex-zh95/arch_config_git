@@ -239,9 +239,10 @@ adobe-source-sans-fonts
 awesome-terminal-fonts
 noto-fonts
 ttf-ubuntu-font-family
-ttf-meslo-nerd-font-powerlevel10k
+# ttf-meslo-nerd-font-powerlevel10k
 ttf-jetbrains-mono-nerd
 ttf-font-awesome
+otf-fira-sans
 
 ###themes
 arc-gtk-theme

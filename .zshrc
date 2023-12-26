@@ -87,6 +87,7 @@ source $HOME/.zsh_plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+# export LANG=zh_CN.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -193,7 +194,7 @@ alias merge="xrdb -merge ~/.Xresources"
 # Aliases for software managment
 # pacman or pm
 alias pacman='pacman --color auto'
-alias update='sudo pacman -Syyu'
+alias update='sudo pacman -Syu'
 
 # paru as aur helper - updates everything
 #alias pksyua="paru -Syu --noconfirm"
@@ -203,11 +204,14 @@ alias update='sudo pacman -Syyu'
 alias psa="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 
-#grub update
+# grub update
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
-#add new fonts
+# add new fonts
 alias update-fc='sudo fc-cache -fv'
+
+# Fix bat theme cache
+alias bat-cache="bat cache --build"
 
 #copy/paste all content of /etc/skel over to home folder - backup of config created - beware
 alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
