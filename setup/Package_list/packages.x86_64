@@ -228,6 +228,7 @@ poppler-qt5
 ###applications
 feh
 firefox
+geckodriver
 imagemagick
 libreoffice-fresh
 
@@ -541,10 +542,6 @@ python-dbus-next
 # Terminal tools - file manager, fuzzy search and image display
 ranger
 fzf
-
-# Browser and automation driver
-google-chrome
-chromedriver
 
 # Email client and file sync
 thunderbird
