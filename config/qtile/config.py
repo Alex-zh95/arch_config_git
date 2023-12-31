@@ -82,6 +82,15 @@ def window_to_next_group(qtile):
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
 
+def excess_txt(txt: str) -> str:
+    for string in ['firefox', 'brave', 'thunderbird']:
+        if string in txt.lower():
+            pre = string[0].capitalize()
+            return f'{pre}{string[1:]}'
+        else:
+            return txt
+
+
 keys = [
     Key([mod], "Return", lazy.spawn("wezterm"), desc="Launch terminal"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
@@ -196,10 +205,9 @@ for i in groups:
 
 
 # Theme color definitions
-def init_colors(invert=False):
+def init_colors():
     result = {
-        'background': ['#1e203000', '#1e203000'],
-        'alt-foreground': ['#1e2030', '#1e2030'],
+        'background': ['#1e2030', '#1e2030'],
         'foreground': ['#cad3f5', '#cad3f5'],
         'green': ['#a6da95', '#a6da95'],
         'red': ['#ed8796', '#ed8796'],
@@ -208,15 +216,13 @@ def init_colors(invert=False):
         'blue': ['#8aadf4', '#8aadf4'],
         'gray': ['#363a4f', '#363a4f'],
         'gray2': ['#8087a2', '#8087a2'],
+        'clear': ['#1e203000', '#1e203000'],
     }
-
-    if invert:
-        result['foreground'], result['alt-foreground'] = result['alt-foreground'], result['foreground']
 
     return result
 
 
-colors = init_colors(invert=False)
+colors = init_colors()
 
 
 def init_default_theme():
@@ -289,7 +295,7 @@ layouts = [
 
 # # Remark: font size up'd to 24 due to high pixel density
 # Initialization of persistent window objects
-standard_sep = widget.Sep(
+vert_sep = widget.Sep(
     linewidth=1,
     padding=20,
     foreground=colors['foreground'],
@@ -307,8 +313,10 @@ battery_text = UPowerWidget(
     border_critical_color=colors['red'],
     font='JetBrainsMono NF',
     fontsize=24,
-    text_charging='{percentage:.0f}% (󰠠 {ttf})',
+    text_charging=' 󰠠 {percentage:.0f}%',
     text_discharging='{percentage:.0f}%',
+    fill_charge=colors['green'],
+    percentage_low=0.15,
 )
 
 memory_display = widget.Memory(
@@ -339,7 +347,7 @@ status_notifier = StatusNotifier(
     padding=4,
 
     # Following attributes are custom and not from standard Qtile StatusNotifier
-    menu_background=colors['alt-foreground'],  # Use the non-transparent version
+    menu_background=colors['foreground'],  # Use the non-transparent version
     menu_font="JetBrainsMono NF",
     menu_fontsize=24,
     menu_foreground=colors['foreground'],
@@ -358,31 +366,12 @@ volume_control = widget.Volume(
     mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}
 )
 
-wifi_widget = widget.Wlan(
-    background=colors['background'],
-    foreground=colors['foreground'],
-    interface='wlo1',  # Check this string via iwconfig
-    font='JetBrainsMono NF',
-    fontsize=24,
-    format='  {essid} {percent:2.0%}',
-    disconnected_message='󰤮 ',
-    mouse_callbacks={
-        'Button1': lazy.spawn('rofi-wifi-menu'),
-        'Button3': lazy.spawn('nm-connection-editor')
-    }
-)
-
-spacer = widget.Spacer(
-    background=colors['background'],
-    length=bar.STRETCH,
-)
-
 backlight_widget = widget.Backlight(
     background=colors['background'],
     foreground=colors['foreground'],
     backlight_name='intel_backlight',  # Use cmd 'ls /sys/class/backlight/' to query name
     font='JetBrainsMono NF',
-    format='  {percent:2.0%}',
+    format='  {percent:2.0%} ',
     step=0.5,
     fontsize=24,
     change_command='',
@@ -391,6 +380,26 @@ backlight_widget = widget.Backlight(
         'Button1': lazy.spawn('brightnessctl set +5%'),
         'Button3': lazy.spawn('brightnessctl set 5%-'),
     }
+)
+
+mission_ctrl = widget.TextBox(
+    background=colors['background'],
+    foreground=colors['blue'],
+    font='JetBrainsMono NF',
+    fontsize=24,
+    padding=4,
+    mouse_callbacks={'Button1': lazy.spawn("rofi -show drun"), 'Button3': lazy.spawn(show_window_cmd)},
+    text='  '
+)
+
+power_btn = widget.TextBox(
+    background=colors['background'],
+    foreground=colors['red'],
+    font='JetBrainsMono NF',
+    fontsize=24,
+    padding=4,
+    mouse_callbacks={'Button1': lazy.spawn(power_menu_cmd)},
+    text='󰐥 '
 )
 
 
@@ -410,7 +419,7 @@ def init_widgets_list(screen_id=1) -> list:
         margin_y=4,
         margin_x=0,
         padding_y=5,
-        padding_x=5,
+        padding_x=12,
         borderwidth=5,
         disable_drag=True,
         active=colors['foreground'],
@@ -418,41 +427,65 @@ def init_widgets_list(screen_id=1) -> list:
         rounded=False,
         highlight_method="line",
         highlight_color=colors['background'],
-        this_current_screen_border=colors['orange'],  # When focused
-        this_screen_border=colors['gray2'],  # When un-focused
-        other_screen_border=colors['gray2'],  # When focused
-        other_current_screen_border=colors['gray2'],  # When un-focused
-        hide_unused=True,
+        this_current_screen_border=colors['orange'],  # This screen active
+        this_screen_border=colors['gray2'],  # This screen inactive
+        other_screen_border=colors['foreground'],  # Other screen active
+        other_current_screen_border=colors['blue'],  # Other screen inactive
+        hide_unused=False,
         foreground=colors['foreground'],
         background=colors['background']
     )
 
-    window_name = widget.WindowName(
-        foreground=colors['foreground'],
+    window_wdg = widget.WindowName(
+        foreground=colors['yellow'],
         background=colors['background'],
         font='JetBrainsMono NF',
         empty_group_string='',
         fontsize=24,
-        mouse_callbacks={'Button1': lazy.spawn("rofi -show drun"), 'Button3': lazy.spawn(show_window_cmd)},
-        padding=5
+        padding=5,
+        scroll=True,
+        # width=bar.STRETCH,
+        width=1900,
     )
 
+    # window_wdg = widget.TaskList(
+    #     foreground=colors['foreground'],
+    #     background=colors['background'],
+    #     border=colors['orange'],
+    #     borderwidth=5,
+    #     font='JetBrainsMono NF',
+    #     fontsize=24,
+    #     icon_size=30,
+    #     highlight_method='block',
+    #     margin=0,
+    #     parse_text=remove_window_txt,
+    #     padding=5,
+    #     width=0,
+    #     # title_width_method='uniform',
+    #     # max_title_width=50,
+    # )
+
     widgets_list = [
+        mission_ctrl,
+        vert_sep,
         group_box,
-        standard_sep,
+        vert_sep,
         current_layout_icon,
-        standard_sep,
-        # wifi_widget,
-        # standard_sep,
-        window_name,
-        standard_sep,
+        vert_sep,
+        widget.Spacer(background=colors['clear'], length=bar.STRETCH),
+        vert_sep,
+        window_wdg,
+        clock_widget,
+        vert_sep,
+        widget.Spacer(background=colors['clear'], length=bar.STRETCH),
+        vert_sep,
         battery_text,
         status_notifier,
         volume_control,
         backlight_widget,
-        standard_sep,
         memory_display,
-        clock_widget,
+        vert_sep,
+        power_btn
     ]
 
     return widgets_list
@@ -471,6 +504,9 @@ def init_screens():
         Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=bar_size, opacity=opacity, background='#00000000')),
         Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=bar_size, opacity=opacity, background='#00000000')),
         Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=bar_size, opacity=opacity, background='#00000000'))
+        # Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=bar_size, opacity=opacity,)),
+        # Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=bar_size, opacity=opacity,)),
+        # Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=bar_size, opacity=opacity,))
     ]
 
 
