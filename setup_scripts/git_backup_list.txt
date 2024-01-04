@@ -12,5 +12,6 @@ qtile
 sxhkd
 ranger
 rofi
+tmux
 spicetify
 wezterm
