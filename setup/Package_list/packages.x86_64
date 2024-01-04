@@ -349,7 +349,7 @@ mkinitcpio-openswap
 
 ###utilities-repo
 wezterm
-guake
+tmux
 appstream
 archiso
 
