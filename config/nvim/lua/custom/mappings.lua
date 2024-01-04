@@ -4,18 +4,19 @@ local M = {}
 
 M.general = {
     n = {
-        -- switch between windows
-        ["H"] = { "<C-w>h", "Window left" },
-        ["L"] = { "<C-w>l", "Window right" },
-        ["J"] = { "<C-w>j", "Window down" },
-        ["K"] = { "<C-w>k", "Window up" },
-
-        -- Resize windows
-        ["<A-H>"] = { ":wincmd < <CR>", "divider left"},
-        ["<A-L>"] = { ":wincmd > <CR>", "divider right"},
-        ["<A-K>"] = { ":wincmd + <CR>", "divider up"},
-        ["<A-J>"] = { ":wincmd - <CR>", "divider down"},
+        ["<C-h>"] = {"<cmd> TmuxNavigateLeft<cr>", "Window left"},
+        ["<C-l>"] = {"<cmd> TmuxNavigateRight<cr>", "Window right"},
+        ["<C-j>"] = {"<cmd> TmuxNavigateDown<cr>", "Window down"},
+        ["<C-k>"] = {"<cmd> TmuxNavigateUp<cr>", "Window up"}
     },
+
+    i = {
+        ["<C-h>"] = {"<cmd> TmuxNavigateLeft<cr>", "Window left"},
+        ["<C-l>"] = {"<cmd> TmuxNavigateRight<cr>", "Window right"},
+        ["<C-j>"] = {"<cmd> TmuxNavigateDown<cr>", "Window down"},
+        ["<C-k>"] = {"<cmd> TmuxNavigateUp<cr>", "Window up"}
+    },
+
     v = {
         ["<C-a>"] = {":EasyAlign*<Bar><Enter>", "Align markdown tables"}
     }
@@ -67,6 +68,10 @@ M.vim_misc = {
     n = {
         ["<leader>h"] = {"<cmd>vsplit<CR>", "Nvim horizontal split"},
         ["<leader>v"] = {"<cmd>split<CR>", "Nvim vertical split"},
+        ["H"] = { ":wincmd < <CR>", "divider left"},
+        ["L"] = { ":wincmd > <CR>", "divider right"},
+        ["K"] = { ":wincmd + <CR>", "divider up"},
+        ["J"] = { ":wincmd - <CR>", "divider down"},
         ["<leader>z"] = {":ZenMode<CR>", 'Toggle zen mode'},
     }
 }

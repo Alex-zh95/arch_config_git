@@ -67,10 +67,9 @@ local plugins = {
         end
     },
 
-    -- Integration with multiplexers
+    -- vim-tmux-navigator (being able to hop to tmux splits from vim via Ctrl keys)
     {
-        -- "christoomey/vim-tmux-navigator",  -- tmux
-        "mrjones2014/smart-splits.nvim",
+        "christoomey/vim-tmux-navigator",
         lazy = false,
     },
 

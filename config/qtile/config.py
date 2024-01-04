@@ -15,6 +15,21 @@ mod1 = "alt"
 mod2 = "control"
 home = os.path.expanduser('~')
 
+# Fontsize init and scales
+# Scale factor defaults depending on x11 or qtile
+if qtile.core.name == 'x11':
+    font_size: int = 24
+    pad_size: int = 4
+    battery_dim = {'width': 35, 'height': 15}
+    status_notifier_dim = {'icon_size': 32, 'menu_width': 750}
+    group_box_dim = {'pad_x': 12, 'pad_y': 5, 'margin_y': 4, 'borderwidth': 5}
+else:
+    font_size: int = 12
+    pad_size: int = 2
+    battery_dim = {'width': 22, 'height': 10}
+    status_notifier_dim = {'icon_size': 16, 'menu_width': 375}
+    group_box_dim = {'pad_x': 8, 'pad_y': 0, 'margin_y': 4, 'borderwidth': 2}
+
 # Common command txts
 power_menu_cmd = f"rofi -show power-menu -modi power-menu:rofi-power-menu -theme {home}/.config/rofi/config/powermenu.rasi"
 show_window_cmd = f'rofi -show window -theme {home}/.config/rofi/config/window_lst.rasi'
@@ -293,7 +308,6 @@ layouts = [
 
 # WIDGETS FOR THE BAR
 
-# # Remark: font size up'd to 24 due to high pixel density
 # Initialization of persistent window objects
 vert_sep = widget.Sep(
     linewidth=1,
@@ -306,13 +320,13 @@ battery_text = UPowerWidget(
     # battery_name=0,
     background=colors['background'],
     foreground=colors['foreground'],
-    battery_width=35,
-    battery_height=15,
+    battery_width=battery_dim['width'],
+    battery_height=battery_dim['height'],
     border_charge_color=colors['green'],
     border_color=colors['foreground'],
     border_critical_color=colors['red'],
     font='JetBrainsMono NF',
-    fontsize=24,
+    fontsize=font_size,
     text_charging=' 󰠠 {percentage:.0f}%',
     text_discharging='{percentage:.0f}%',
     fill_charge=colors['green'],
@@ -325,43 +339,43 @@ memory_display = widget.Memory(
     measure_mem='G',
     measure_wap='G',
     update_interval=1,
-    fontsize=24,
+    fontsize=font_size,
     foreground=colors['foreground'],
     background=colors['background'],
     mouse_callbacks={'Button1': lazy.spawn(show_window_cmd)},
-    padding=4
+    padding=pad_size
 )
 
 clock_widget = widget.Clock(
     font="JetBrainsMono NF",
     foreground=colors['foreground'],
     background=colors['background'],
-    fontsize=24,
+    fontsize=font_size,
     padding=1,
     format="  %Y-%m-%d 󰥔 %H:%M "
 )
 
 status_notifier = StatusNotifier(
     background=colors['background'],
-    icon_size=32,
-    padding=4,
+    icon_size=status_notifier_dim['icon_size'],
+    padding=pad_size,
 
     # Following attributes are custom and not from standard Qtile StatusNotifier
     menu_background=colors['foreground'],  # Use the non-transparent version
     menu_font="JetBrainsMono NF",
-    menu_fontsize=24,
+    menu_fontsize=font_size,
     menu_foreground=colors['foreground'],
     menu_foreground_disabled=colors['gray2'],
     separator_colour=colors['blue'],
-    menu_icon_size=24,
-    menu_width=750,
+    menu_icon_size=font_size,
+    menu_width=status_notifier_dim['menu_width'],
 )
 
 volume_control = widget.Volume(
     background=colors['background'],
     foreground=colors['foreground'],
     font='JetBrainsMono NF',
-    fontsize=24,
+    fontsize=font_size,
     fmt='󰓃 {}',
     mouse_callbacks={'Button3': lazy.spawn('pavucontrol')}
 )
@@ -373,9 +387,9 @@ backlight_widget = widget.Backlight(
     font='JetBrainsMono NF',
     format='  {percent:2.0%} ',
     step=0.5,
-    fontsize=24,
+    fontsize=font_size,
     change_command='',
-    padding=4,
+    padding=pad_size,
     mouse_callbacks={
         'Button1': lazy.spawn('brightnessctl set +5%'),
         'Button3': lazy.spawn('brightnessctl set 5%-'),
@@ -386,8 +400,8 @@ mission_ctrl = widget.TextBox(
     background=colors['background'],
     foreground=colors['blue'],
     font='JetBrainsMono NF',
-    fontsize=24,
-    padding=4,
+    fontsize=font_size,
+    padding=pad_size,
     mouse_callbacks={'Button1': lazy.spawn("rofi -show drun"), 'Button3': lazy.spawn(show_window_cmd)},
     text='  '
 )
@@ -396,8 +410,8 @@ power_btn = widget.TextBox(
     background=colors['background'],
     foreground=colors['red'],
     font='JetBrainsMono NF',
-    fontsize=24,
-    padding=4,
+    fontsize=font_size,
+    padding=pad_size,
     mouse_callbacks={'Button1': lazy.spawn(power_menu_cmd)},
     text='󰐥 '
 )
@@ -415,12 +429,12 @@ def init_widgets_list(screen_id=1) -> list:
 
     group_box = widget.GroupBox(
         font="JetBrainsMono NF",
-        fontsize=24,
-        margin_y=4,
+        fontsize=font_size,
+        margin_y=group_box_dim['margin_y'],
         margin_x=0,
-        padding_y=5,
-        padding_x=12,
-        borderwidth=5,
+        padding_y=group_box_dim['pad_y'],
+        padding_x=group_box_dim['pad_x'],
+        borderwidth=group_box_dim['borderwidth'],
         disable_drag=True,
         active=colors['foreground'],
         inactive=colors['gray2'],
@@ -441,11 +455,11 @@ def init_widgets_list(screen_id=1) -> list:
         background=colors['background'],
         font='JetBrainsMono NF',
         empty_group_string='',
-        fontsize=24,
+        fontsize=font_size,
         padding=5,
         scroll=True,
-        # width=bar.STRETCH,
-        width=1900,
+        width=1200,
+        parse_text=excess_txt,
     )
 
     # window_wdg = widget.TaskList(
@@ -454,7 +468,7 @@ def init_widgets_list(screen_id=1) -> list:
     #     border=colors['orange'],
     #     borderwidth=5,
     #     font='JetBrainsMono NF',
-    #     fontsize=24,
+    #     fontsize=font_size,
     #     icon_size=30,
     #     highlight_method='block',
     #     margin=0,
@@ -497,7 +511,7 @@ def init_widgets_screen(screen_id: int = 1):
 
 
 def init_screens():
-    bar_size = 45
+    bar_size = 45 if qtile.core.name == "x11" else 24
     opacity = 0.75
 
     return [
@@ -533,6 +547,9 @@ def start_once():
     # Run the following autostart script only for X11
     if qtile.core.name == "x11":
         subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
+    else:  # Wayland
+        subprocess.call([home + '/.config/qtile/scripts/wl-autostart.sh'])
+        # pass
 
 
 @hook.subscribe.startup
