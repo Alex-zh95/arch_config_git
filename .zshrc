@@ -11,7 +11,7 @@ export ZSH=/usr/share/oh-my-zsh/
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="daveverwer"
+ZSH_THEME="refined"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -135,10 +135,10 @@ fi
 ### ALIASES ###
 
 #list
-alias ls='exa --color=auto'
-alias ll='exa -lhF --icons'
-alias lla='exa -lahF --icons'
-alias l.="ls -A | egrep '^\.'"
+alias ls='exa --color=auto --sort=extension --group-directories-first'
+alias ll='exa -lhF --icons --sort=extension --group-directories-first'
+alias lla='exa -lahF --icons --sort=extension --group-directories-first'
+alias l.="ls -A --sort=extension --group-directories-first | egrep '^\.'"
 
 #Vim
 alias vim='nvim'
@@ -212,6 +212,7 @@ alias update-fc='sudo fc-cache -fv'
 
 # Fix bat theme cache
 alias bat-cache="bat cache --build"
+alias fixbat="bat cache --build"
 
 #copy/paste all content of /etc/skel over to home folder - backup of config created - beware
 alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
@@ -438,9 +439,6 @@ alias sd='cd $HOME && cd "$(find . -type d | fzf --height 30% --reverse)"'
 
 # Debugging in python shortcut
 alias pdb="python3 -m pdb"
-
-# Auto-tmux start with session name based on current directory in path (i.e. name after last "/")
-alias t="$HOME/.local/bin/tmux_session.sh"
 
 #create a file called .zshrc-personal and put all your personal aliases
 #in there. They will not be overwritten by skel.
