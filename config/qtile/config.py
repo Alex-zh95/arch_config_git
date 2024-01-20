@@ -335,7 +335,7 @@ battery_text = UPowerWidget(
 
 memory_display = widget.Memory(
     font="JetBrainsMono NF",
-    format='  {MemUsed:,.1f}G/{MemTotal:,.1f}G',
+    format='   {MemUsed:,.1f}G/{MemTotal:,.1f}G',
     measure_mem='G',
     measure_wap='G',
     update_interval=1,
@@ -352,7 +352,7 @@ clock_widget = widget.Clock(
     background=colors['background'],
     fontsize=font_size,
     padding=1,
-    format="  %Y-%m-%d 󰥔 %H:%M "
+    format=" %Y-%m-%d 󰥔 %H:%M "
 )
 
 status_notifier = StatusNotifier(
@@ -361,7 +361,7 @@ status_notifier = StatusNotifier(
     padding=pad_size,
 
     # Following attributes are custom and not from standard Qtile StatusNotifier
-    menu_background=colors['foreground'],  # Use the non-transparent version
+    menu_background=colors['background'],  # Use the non-transparent version
     menu_font="JetBrainsMono NF",
     menu_fontsize=font_size,
     menu_foreground=colors['foreground'],
@@ -489,7 +489,7 @@ def init_widgets_list(screen_id=1) -> list:
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
         vert_sep,
         window_wdg,
-        clock_widget,
+        memory_display,
         vert_sep,
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
         vert_sep,
@@ -497,7 +497,7 @@ def init_widgets_list(screen_id=1) -> list:
         status_notifier,
         volume_control,
         backlight_widget,
-        memory_display,
+        clock_widget,
         vert_sep,
         power_btn
     ]
