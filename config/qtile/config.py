@@ -107,7 +107,7 @@ def excess_txt(txt: str) -> str:
 
 
 keys = [
-    Key([mod], "Return", lazy.spawn("wezterm"), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
     Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
