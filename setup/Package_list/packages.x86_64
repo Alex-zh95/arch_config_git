@@ -348,7 +348,8 @@ nordzy-icon-theme-git
 mkinitcpio-openswap
 
 ###utilities-repo
-wezterm
+alacritty
+# wezterm
 tmux
 appstream
 archiso
