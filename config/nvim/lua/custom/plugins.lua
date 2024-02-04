@@ -7,7 +7,8 @@ local plugins = {
                 "debugpy",
                 "python-lsp-server",
                 "pylint",
-                "marksman"
+                "clangd",
+                "marksman",
             }
         }
     },

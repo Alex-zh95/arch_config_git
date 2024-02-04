@@ -39,5 +39,7 @@ config.window_padding = {
 config.pane_focus_follows_mouse = true
 config.scrollback_lines = 1000
 
+config.default_cursor_style = 'SteadyBar'
+
 -- and finally, return the configuration to wezterm 
 return config
