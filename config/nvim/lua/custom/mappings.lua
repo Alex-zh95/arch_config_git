@@ -141,14 +141,14 @@ M.nvterm = {
             "toggle floating term",
         },
 
-        ["<leader>th"] = {
+        ["<leader>tv"] = {
             function()
                 require("nvterm.terminal").toggle "horizontal"
             end,
             "toggle horizontal term",
         },
 
-        ["<leader>tv"] = {
+        ["<leader>th"] = {
             function()
                 require("nvterm.terminal").toggle "vertical"
             end,
@@ -165,14 +165,14 @@ M.nvterm = {
             "toggle floating term",
         },
 
-        ["<leader>th"] = {
+        ["<leader>tv"] = {
             function()
                 require("nvterm.terminal").toggle "horizontal"
             end,
             "toggle horizontal term",
         },
 
-        ["<leader>tv"] = {
+        ["<leader>th"] = {
             function()
                 require("nvterm.terminal").toggle "vertical"
             end,

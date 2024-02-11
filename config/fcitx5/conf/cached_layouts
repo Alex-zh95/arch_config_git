@@ -2853,11 +2853,6 @@ Description="Tastatur - Griechisch - Griechisch (vereinfacht)"
 Language=el
 Label="gr (simple)"
 
-[keyboard-gr-extended]
-Description="Tastatur - Griechisch - Griechisch (erweitert)"
-Language=el
-Label="gr (extended)"
-
 [keyboard-gr-nodeadkeys]
 Description="Tastatur - Griechisch - Griechisch (ohne Akzenttasten)"
 Language=el
@@ -3278,11 +3273,6 @@ Description="Tastatur - Ungarisch - Ungarisch (QWERTY, 102 Tasten, Punkt, ohne A
 Language=hu
 Label="hu (102_qwerty_dot_nodead)"
 
-[keyboard-hu-oldhun]
-Description="Tastatur - Ungarisch - Alt-Ungarisch"
-Language=hu
-Label=oldhun
-
 [keyboard-hu-oldhunlig]
 Description="Tastatur - Ungarisch - Alt-Ungarisch (für Ligaturen)"
 Language=hu
@@ -3597,11 +3587,6 @@ Label="it (us)"
 Description="Tastatur - Italienisch - Italienisch (IBM 142)"
 Language=it
 Label="it (ibm)"
-
-[keyboard-it-intl]
-Description="Tastatur - Italienisch - Italienisch (International, mit Akzenttasten)"
-Language=it
-Label="it (intl)"
 
 [keyboard-it-fur]
 Description="Tastatur - Italienisch - Furlanisch (Italien)"

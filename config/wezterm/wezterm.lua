@@ -26,14 +26,16 @@ config.font = wezterm.font_with_fallback {
 -- Tab bar
 config.use_fancy_tab_bar = false
 config.enable_tab_bar = false
+config.window_background_opacity = 0.85
+config.text_background_opacity = 1.0
 
 -- Window decorations
 config.window_decorations = "NONE"
 config.window_padding = {
-    left = 1,
-    right = 1,
-    top = 1,
-    bottom = 1,
+    left = 5,
+    right = 5,
+    top = 5,
+    bottom = 5,
 }
 
 config.pane_focus_follows_mouse = true

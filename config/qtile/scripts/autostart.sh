@@ -42,3 +42,4 @@ xss-lock $HOME/.config/qtile/scripts/lock.sh &
 # nm-applet does not appear in bar if loaded too early
 run nm-applet --indicator &
 run caffeine &
+run variety &

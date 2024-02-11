@@ -33,7 +33,7 @@ else:
 # Common command txts
 power_menu_cmd = f"rofi -show power-menu -modi power-menu:rofi-power-menu -theme {home}/.config/rofi/config/powermenu.rasi"
 show_window_cmd = f'rofi -show window -theme {home}/.config/rofi/config/window_lst.rasi'
-calc_cmd = 'rofi -show calc -modi calc -no-show-match -no-sort'
+calc_cmd = f'rofi -show calc -modi calc -no-show-match -no-sort -theme {home}/.config/rofi/config/window_lst.rasi'
 
 # Define all the default layouts and groups
 groups = []
@@ -255,7 +255,7 @@ default_theme = init_default_theme()
 column_theme = init_default_theme()
 column_theme['border_focus_stack'] = colors['orange']
 column_theme['border_normal_stack'] = colors['background']
-column_theme['border_on_single'] = True
+column_theme['border_on_single'] = False
 
 # Max theme - no margins needed
 max_theme = init_default_theme()
@@ -288,7 +288,6 @@ floating_layout = layout.Floating(
         Match(wm_class='Galculator'),
         Match(wm_class='archlinux-logout'),
         Match(wm_class='xfce4-terminal'),
-        Match(wm_class='guake'),
         Match(wm_class='pavucontrol'),
         Match(wm_class='tuxedo-control-center'),
         Match(wm_class='io.github.alainm23.planify'),
@@ -458,7 +457,7 @@ def init_widgets_list(screen_id=1) -> list:
         fontsize=font_size,
         padding=5,
         scroll=True,
-        width=1200,
+        width=1000,
         parse_text=excess_txt,
     )
 
@@ -560,7 +559,7 @@ def start_always():
     if qtile.core.name == "x11":
         # Set the cursor to something sane in X
         subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
-        subprocess.run(['feh', '--bg-fill', home + '/Bilder/background.png', '&'])
+        # subprocess.run(['feh', '--bg-fill', home + '/Bilder/background.png', '&'])
 
         subprocess.call([home + '/.config/qtile/scripts/restart.sh'])
 
