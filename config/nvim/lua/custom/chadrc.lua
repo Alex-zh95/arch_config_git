@@ -10,11 +10,11 @@ M.ui = {
     changed_themes = {
         catppuccin = {
             base_16 = {
-                grey_fg = "#eed49f", -- Using yellow for comments
+                grey_fg = "#f0c6c6", -- Using a brighter color for comments
             },
 
             base_30 = {
-                grey_fg = "#eed49f", -- Using yellow for comments
+                grey_fg = "#f0c6c6", -- Using a brighter color for comments
             },
         }
     },

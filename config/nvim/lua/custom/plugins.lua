@@ -30,7 +30,6 @@ local plugins = {
                 "cpp",
                 "make",
                 "python",
-                "markdown",
                 "json"
             }
         }
