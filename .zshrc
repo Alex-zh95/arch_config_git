@@ -89,13 +89,6 @@ source $HOME/.zsh_plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh
 # export LANG=en_US.UTF-8
 # export LANG=zh_CN.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -150,12 +143,6 @@ alias vnvim='[[ -n $TMUX ]] && tmux splitw nvim'
 #fix obvious typo's
 alias cd..='cd ..'
 alias pdw='pwd'
-#alias udpate='sudo pacman -Syyu'
-#alias upate='sudo pacman -Syyu'
-#alias updte='sudo pacman -Syyu'
-#alias updqte='sudo pacman -Syyu'
-#alias upqll='paru -Syu --noconfirm'
-#alias upal='paru -Syu --noconfirm'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -195,10 +182,6 @@ alias merge="xrdb -merge ~/.Xresources"
 # pacman or pm
 alias pacman='pacman --color auto'
 alias update='sudo pacman -Syu'
-
-# paru as aur helper - updates everything
-#alias pksyua="paru -Syu --noconfirm"
-#alias upall="paru -Syu --noconfirm"
 
 #ps
 alias psa="ps auxf"
@@ -432,18 +415,20 @@ alias personal='cp -Rf /personal/* ~'
 alias laptoponly='~/.config/qtile/Laptop_Screen_Only.sh'
 alias screenout='~/.config/qtile/screens.py'
 alias asc='~/.config/qtile/auto_scr.sh'
-alias autoscr='~/.config/qtile/auto_scr.sh'
 
 # Fuzzy cd'ing into directories (requires fzf)
-alias sd='cd $HOME && cd "$(find . -type d | fzf --height 30% --reverse)"'
+# alias sd='cd $HOME && cd "$(find . -type d | fzf --height 30% --reverse)"'
 
 # Debugging in python shortcut
 alias pdb="python3 -m pdb"
+
+eval "$(zoxide init --cmd cd zsh)"
 
 #create a file called .zshrc-personal and put all your personal aliases
 #in there. They will not be overwritten by skel.
 
 [[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
+
 
 # reporting tools - install when not installed
 #neofetch

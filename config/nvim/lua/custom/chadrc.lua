@@ -5,6 +5,21 @@ M.ui = {
         theme='default',
         separator_style='block',
     },
+
+    -- Theme overrides
+    changed_themes = {
+        catppuccin = {
+            base_16 = {
+                grey_fg = "#eed49f", -- Using yellow for comments
+            },
+
+            base_30 = {
+                grey_fg = "#eed49f", -- Using yellow for comments
+            },
+        }
+    },
+
+    transparency = true,
 }
 
 M.mappings = require("custom.mappings")

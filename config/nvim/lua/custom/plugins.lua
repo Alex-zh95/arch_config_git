@@ -12,6 +12,7 @@ local plugins = {
             }
         }
     },
+
     -- in order to modify ./custom/lspconfig.lua 
     {
         "neovim/nvim-lspconfig",
@@ -19,6 +20,20 @@ local plugins = {
             require("plugins.configs.lspconfig")
             require("custom.configs.lspconfig")
         end,
+    },
+
+    -- Treesitter configs for syntax highlighting
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+            ensure_installed = {
+                "cpp",
+                "make",
+                "python",
+                "markdown",
+                "json"
+            }
+        }
     },
 
     -- debugger
