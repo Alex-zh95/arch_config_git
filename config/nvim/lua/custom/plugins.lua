@@ -9,6 +9,7 @@ local plugins = {
                 "pylint",
                 "clangd",
                 "marksman",
+                "codelldb",
             }
         }
     },
@@ -48,6 +49,22 @@ local plugins = {
         config = function()
             require("custom.configs.dap").setup()
         end,
+    },
+
+    -- dap config for C++
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "mfussenegger/nvim-dap",
+        },
+        opts = {
+            handlers = {},
+            ensure_installed = {
+                "codelldb",
+            },
+        },
     },
 
     -- easy hopping around based on key-letters

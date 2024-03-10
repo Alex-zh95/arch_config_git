@@ -28,21 +28,26 @@ list_outputs = args.outputs.split(', ')
 output_str = 'xrandr --output eDP-1 --off' if args.dock_only == 'True' else 'xrandr'
 
 # We need to arrange the screens in horizontal layout given
-anchor = args.resolution.split('x')
+if args.resolution != "off":
+    anchor = args.resolution.split('x')
 
-# Beware of the scaling factor!
-list_xPos = [int(anchor[0])*2*n for n in range(len(list_outputs))]
+    # Beware of the scaling factor!
+    list_xPos = [int(anchor[0]) * 2 * n + 1 for n in range(len(list_outputs))]
 
 for i in range(len(list_outputs)):
     # Add also the resolution, position, rotation and scaling
     output = list_outputs[i]
-    position_str = f'{list_xPos[i]}x0'
-    output_str = f'{output_str} --output {output} --mode {args.resolution} --pos {position_str} --rotate normal --scale 2x2'
 
-    if i == 0:
-        output_str = f'{output_str} --primary'
+    if args.resolution != "off":
+        position_str = f'{list_xPos[i]}x0'
+        output_str = f'{output_str} --output {output} --mode {args.resolution} --pos {position_str} --rotate normal --scale 2x2'
 
-if args.dock_only == 'False':
+        if i == 0:
+            output_str = f'{output_str} --primary'
+    else:
+        output_str = f'{output_str} --output {output} --off'
+
+if (args.dock_only == 'False') & (args.resolution != "off"):
     output_str = f'{output_str} --output eDP-1 --left-of {list_outputs[0]}'
 
 # Apply the command built in output_str
