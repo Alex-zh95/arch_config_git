@@ -562,6 +562,7 @@ def start_always():
         # subprocess.run(['feh', '--bg-fill', home + '/Bilder/background.png', '&'])
 
         subprocess.call([home + '/.config/qtile/scripts/restart.sh'])
+        subprocess.call([home + '/.fehbg'])
 
 
 @hook.subscribe.client_new
