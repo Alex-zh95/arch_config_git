@@ -450,7 +450,7 @@ webapp-manager
 
 # Python environment managers
 python-pip
-python-pipenv
+paython-pdm
 
 # Firewall
 gufw
