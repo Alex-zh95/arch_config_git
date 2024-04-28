@@ -3,7 +3,7 @@
 #####################################################################
 
 alsa-utils
-amd-ucode
+# amd-ucode
 arch-install-scripts
 base
 cmake
@@ -66,7 +66,7 @@ reflector
 reiserfsprogs
 rp-pppoe
 rsync
-rxvt-unicode-terminfo
+# rxvt-unicode-terminfo
 sdparm
 sg3_utils
 smartmontools
@@ -219,6 +219,7 @@ poppler-qt5
 ###applications
 feh
 firefox
+brave
 geckodriver
 imagemagick
 libreoffice-fresh
@@ -250,7 +251,7 @@ dex
 duf-bin
 edid-decode-git
 etcher-bin
-exa
+eza
 expac
 file-roller
 git
@@ -266,7 +267,6 @@ vlc
 jq
 xss-lock
 i3lock-color
-x86_energy_perf_policy
 
 # Spell-checkers
 hunspell
@@ -330,9 +330,6 @@ capitaine-cursors
 sardi-icons
 surfn-icons-git
 nordzy-icon-theme-git
-
-###network
-#b43-firmware
 
 ###tools
 mkinitcpio-openswap
@@ -408,7 +405,6 @@ xfce4-screenshooter
 
 #desktop specific qtile (qtile extras in AUR)
 qtile
-#qtile-extras-git
 
 # Subtools for querying system statuses e.g. RAM, Wifi status
 python-psutil       
@@ -450,7 +446,7 @@ webapp-manager
 
 # Python environment managers
 python-pip
-paython-pdm
+python-pdm
 
 # Firewall
 gufw
