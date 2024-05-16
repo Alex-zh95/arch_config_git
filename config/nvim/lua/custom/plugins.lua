@@ -8,6 +8,7 @@ local plugins = {
                 "python-lsp-server",
                 "pylint",
                 "clangd",
+                "cmake-language-server",
                 "marksman",
                 "codelldb",
             }
@@ -45,6 +46,7 @@ local plugins = {
             "rcarriga/nvim-dap-ui",
             "theHamsta/nvim-dap-virtual-text",
             "nvim-telescope/telescope-dap.nvim",
+            "/nvim-neotest/nvim-nio",
         },
         config = function()
             require("custom.configs.dap").setup()
@@ -94,9 +96,11 @@ local plugins = {
         lazy = false,
         config = function()
             require("zen-mode").setup({
-                -- Configuration here, or leave empty to use defaults
+                window = {
+                    width = 0.75
+                }
             })
-        end
+        end,
     },
 
     -- vim-tmux-navigator (being able to hop to tmux splits from vim via Ctrl keys)

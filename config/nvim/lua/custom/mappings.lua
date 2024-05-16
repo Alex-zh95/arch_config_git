@@ -47,8 +47,11 @@ M.disabled = {
     -- Disable some default duplicated nvterm binds
     n = {
         ["<leader>h"] = "",
-        ["<leader>v"] = ""
-        -- ["K"] = ""
+        ["<leader>v"] = "",
+        ["K"] = "",
+        ["<A-v>"] = "",
+        ["<A-i>"] = "",
+        ["<A-h>"] = "",
     }
 }
 
@@ -78,7 +81,7 @@ M.vim_misc = {
 
 M.hop = {
     n = {
-        ["<leader>fs"] = {
+        ["f"] = {
             function()
                 HOP=require('hop')
                 DIRECTIONS=require('hop.hint').HintDirection
@@ -89,7 +92,7 @@ M.hop = {
                 })
             end,
             "Jump to next highlighted character"},
-        ["<leader>fb"] = {
+        ["F"] = {
             function()
                 HOP=require('hop')
                 DIRECTIONS=require('hop.hint').HintDirection
@@ -103,7 +106,7 @@ M.hop = {
 
     },
     v = {
-        ["<leader>fs"] = {
+        ["f"] = {
             function()
                 HOP=require('hop')
                 DIRECTIONS=require('hop.hint').HintDirection
@@ -114,7 +117,7 @@ M.hop = {
                 })
             end,
             "Jump to next highlighted character"},
-        ["<leader>fb"] = {
+        ["F"] = {
             function()
                 HOP=require('hop')
                 DIRECTIONS=require('hop.hint').HintDirection
