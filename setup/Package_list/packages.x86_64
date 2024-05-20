@@ -111,7 +111,7 @@ xorg-xinit
 ###extras for vim plugins
 npm
 
-###video (do we need? TRY IN VM first!)
+###video (some are from xorg-drivers group, others in just xorg group)
 # xf86-input-elographics
 # xf86-input-evdev
 # xf86-input-libinput
@@ -303,7 +303,6 @@ rofi-calc
 
 rxvt-unicode
 #timeshift
-tlp
 unace
 unrar
 unzip
@@ -318,6 +317,10 @@ zenity
 zsh
 zsh-completions
 zsh-syntax-highlighting
+
+# Battery tools - install only one
+#tlp
+tuxedo-control-center-bin
 
 ###########################################################################
 #                           ARCOLINUX_REPOS
@@ -351,7 +354,7 @@ inxi
 neofetch
 #pulseaudio-equalizer-ladspa
 python-pyparted
-python-pywal
+# python-pywal
 rate-mirrors-bin
 #scour
 #screenkey-git
@@ -426,7 +429,7 @@ onedrive-abraunegg
 # Code editor
 visual-studio-code-bin 
 
-# LaTeX engine, editor and instant editor (AUR)
+# LaTeX engine, editor and instant editor
 texlive-most
 texmaker
 klatexformula
