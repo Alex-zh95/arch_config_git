@@ -42,5 +42,5 @@ tuxedo-control-center &
 
 # nm-applet does not appear in bar if loaded too early
 run nm-applet --indicator &
-run caffeine &
+run caffeine-indicator &
 run variety &

@@ -240,7 +240,7 @@ otf-fira-sans
 arc-gtk-theme
 arc-darkest-theme-git
 kvantum
-catppuccin-gtk-theme-macchiato
+fluent-gtk-theme
 
 ###utilities
 arandr
@@ -318,8 +318,8 @@ zsh
 zsh-completions
 zsh-syntax-highlighting
 
-# Battery tools - install only one
-#tlp
+# Battery optimization tools
+tlp
 tuxedo-control-center-bin
 
 ###########################################################################

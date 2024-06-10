@@ -2,7 +2,7 @@ import os
 import subprocess
 from libqtile import qtile, layout, bar, widget, hook
 from libqtile.config import Drag, Group, Key, Match, Screen
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.backend.wayland import InputConfig
 
 from extras.upower import UPowerWidget
@@ -113,7 +113,7 @@ keys = [
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
     Key([mod], "q", session_kill(), desc='Close window - shutdown menu if no apps running'),
     Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
-    Key([mod], "b", lazy.window.bring_to_front(), desc="Bring hidden floating windows behind to front"),
+    Key([mod], "a", lazy.window.bring_to_front(), desc="Bring hidden floating windows behind to front"),
     Key([mod], "m", lazy.spawn(show_window_cmd), desc="Launch rofi window browser"),
     Key([mod], "c", lazy.spawn(calc_cmd), desc="Launch quick calculator"),
 
