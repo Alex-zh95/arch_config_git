@@ -9,6 +9,7 @@ gtk-4.0
 Kvantum
 nvim
 qtile
+qalculate
 sxhkd
 ranger
 rofi

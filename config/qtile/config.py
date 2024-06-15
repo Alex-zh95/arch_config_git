@@ -24,7 +24,7 @@ if qtile.core.name == 'x11':
     status_notifier_dim = {'icon_size': 32, 'menu_width': 750}
     group_box_dim = {'pad_x': 12, 'pad_y': 5, 'margin_y': 4, 'borderwidth': 5}
 else:
-    font_size: int = 24 
+    font_size: int = 24
     pad_size: int = 4
     battery_dim = {'width': 22, 'height': 10}
     status_notifier_dim = {'icon_size': 16, 'menu_width': 375}
@@ -33,7 +33,7 @@ else:
 # Common command txts
 power_menu_cmd = f"rofi -show power-menu -modi power-menu:rofi-power-menu -theme {home}/.config/rofi/config/powermenu.rasi"
 show_window_cmd = f'rofi -show window -theme {home}/.config/rofi/config/window_lst.rasi'
-calc_cmd = f'rofi -show calc -modi calc -no-show-match -no-sort -theme {home}/.config/rofi/config/window_lst.rasi'
+calc_cmd = f'rofi -show calc -modi calc -no-persist-history -theme {home}/.config/rofi/config/calc.rasi'
 
 # Define all the default layouts and groups
 groups = []
@@ -126,6 +126,7 @@ keys = [
 
     Key([mod, "shift"], "q", lazy.spawn(power_menu_cmd), desc="Power menu"),
     Key([mod, "shift"], "r", lazy.restart()),
+    Key([mod, "shift"], "Return", lazy.spawn("thunar"), desc="Launch file browser"),
 
     # Screenshot
     Key([mod, "shift"], "s", lazy.spawn('xfce4-screenshooter -r -o ristretto')),
@@ -207,7 +208,6 @@ keys = [
 
 for i in groups:
     keys.extend([
-
         # CHANGE WORKSPACES
         Key([mod], i.name, lazy.group[i.name].toscreen()),
 
@@ -345,13 +345,22 @@ memory_display = widget.Memory(
     padding=pad_size
 )
 
-clock_widget = widget.Clock(
+date_widget = widget.Clock(
     font="JetBrainsMono NF",
     foreground=colors['foreground'],
     background=colors['background'],
     fontsize=font_size,
     padding=1,
-    format=" %Y-%m-%d 󰥔 %H:%M "
+    format=" %Y-%m-%d "
+)
+
+clock_widget = widget.Clock(
+    font="JetBrainsMono NF",
+    foreground=colors['blue'],
+    background=colors['background'],
+    fontsize=font_size,
+    padding=1,
+    format=" %H:%M "
 )
 
 status_notifier = StatusNotifier(
@@ -415,11 +424,24 @@ power_btn = widget.TextBox(
     text='󰐥 '
 )
 
+launch_bar = widget.LaunchBar(
+    background=colors['background'],
+    foreground=colors['red'],
+    font='JetBrainsMono NF',
+    fontsize=font_size,
+    padding=pad_size,
+    progs=[ # Accepts tuple in form (icon, cmd, descr)
+        (' ', 'alacritty', 'Open Alacritty shell'),
+        ('󰈹 ', 'firefox', 'Open Firefox web browser'),
+        ('', 'thunar', 'Open file manager'),
+    ],
+    text_only=True,
+)
+
 
 def init_widgets_list(screen_id=1) -> list:
     # Initializing widgets that depend on screen and content on screen
     current_layout_icon = CurrentLayoutIcon(
-        # custom_icon_paths=[home + "/.config/qtile/icons"],
         scale=0.6,
         foreground=colors['orange'],
         background=colors['background'],
@@ -453,7 +475,7 @@ def init_widgets_list(screen_id=1) -> list:
         foreground=colors['yellow'],
         background=colors['background'],
         font='JetBrainsMono NF',
-        empty_group_string='',
+        empty_group_string='ø',
         fontsize=font_size,
         padding=5,
         scroll=True,
@@ -461,42 +483,28 @@ def init_widgets_list(screen_id=1) -> list:
         parse_text=excess_txt,
     )
 
-    # window_wdg = widget.TaskList(
-    #     foreground=colors['foreground'],
-    #     background=colors['background'],
-    #     border=colors['orange'],
-    #     borderwidth=5,
-    #     font='JetBrainsMono NF',
-    #     fontsize=font_size,
-    #     icon_size=30,
-    #     highlight_method='block',
-    #     margin=0,
-    #     parse_text=remove_window_txt,
-    #     padding=5,
-    #     width=0,
-    #     # title_width_method='uniform',
-    #     # max_title_width=50,
-    # )
-
     widgets_list = [
         mission_ctrl,
         vert_sep,
         group_box,
         vert_sep,
-        current_layout_icon,
-        vert_sep,
-        widget.Spacer(background=colors['clear'], length=bar.STRETCH),
+        launch_bar,
         vert_sep,
         window_wdg,
-        memory_display,
         vert_sep,
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
+        vert_sep,
+        clock_widget,
+        vert_sep,
+        widget.Spacer(background=colors['clear'], length=bar.STRETCH),
+        vert_sep,
+        current_layout_icon,
         vert_sep,
         battery_text,
         status_notifier,
         volume_control,
         backlight_widget,
-        clock_widget,
+        date_widget,
         vert_sep,
         power_btn
     ]
@@ -517,9 +525,6 @@ def init_screens():
         Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=bar_size, opacity=opacity, background='#00000000')),
         Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=bar_size, opacity=opacity, background='#00000000')),
         Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=bar_size, opacity=opacity, background='#00000000'))
-        # Screen(top=bar.Bar(widgets=init_widgets_screen(1), size=bar_size, opacity=opacity,)),
-        # Screen(top=bar.Bar(widgets=init_widgets_screen(2), size=bar_size, opacity=opacity,)),
-        # Screen(top=bar.Bar(widgets=init_widgets_screen(3), size=bar_size, opacity=opacity,))
     ]
 
 
