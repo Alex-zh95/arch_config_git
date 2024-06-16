@@ -424,17 +424,29 @@ power_btn = widget.TextBox(
     text='󰐥 '
 )
 
+monitor_btn = widget.TextBox(
+    background=colors['background'],
+    foreground=colors['red'],
+    font='JetBrainsMono NF',
+    fontsize=font_size,
+    padding=pad_size,
+    mouse_callbacks={'Button1': lazy.spawn(home + '/.config/qtile/auto_scr.sh')},
+    text='󰍺 '
+)
+
 launch_bar = widget.LaunchBar(
     background=colors['background'],
     foreground=colors['red'],
     font='JetBrainsMono NF',
     fontsize=font_size,
     padding=pad_size,
-    progs=[ # Accepts tuple in form (icon, cmd, descr)
-        (' ', 'alacritty', 'Open Alacritty shell'),
-        ('󰈹 ', 'firefox', 'Open Firefox web browser'),
-        ('', 'thunar', 'Open file manager'),
-    ],
+    progs=[  # Accepts tuple in form (icon, cmd, descr)
+           (' ', 'alacritty', 'Open Alacritty shell'),
+           ('󰈹 ', 'firefox', 'Open Firefox web browser'),
+           (' ', 'firefox', 'Open Chromium web browser'),
+           ('󰊫 ', 'thunderbird', 'Open email'),
+           ('', 'thunar', 'Open file manager'),
+           ],
     text_only=True,
 )
 
@@ -498,6 +510,7 @@ def init_widgets_list(screen_id=1) -> list:
         vert_sep,
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
         vert_sep,
+        monitor_btn,
         current_layout_icon,
         vert_sep,
         battery_text,
