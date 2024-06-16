@@ -443,7 +443,7 @@ launch_bar = widget.LaunchBar(
     progs=[  # Accepts tuple in form (icon, cmd, descr)
            (' ', 'alacritty', 'Open Alacritty shell'),
            ('󰈹 ', 'firefox', 'Open Firefox web browser'),
-           (' ', 'firefox', 'Open Chromium web browser'),
+           (' ', 'brave', 'Open Chromium web browser'),
            ('󰊫 ', 'thunderbird', 'Open email'),
            ('', 'thunar', 'Open file manager'),
            ],
@@ -493,6 +493,7 @@ def init_widgets_list(screen_id=1) -> list:
         scroll=True,
         width=1000,
         parse_text=excess_txt,
+        mouse_callbacks={'Button1': lazy.spawn(show_window_cmd)},
     )
 
     widgets_list = [
