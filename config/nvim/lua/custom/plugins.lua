@@ -98,7 +98,13 @@ local plugins = {
             require("zen-mode").setup({
                 window = {
                     width = 0.75
-                }
+                },
+                plugins = {
+                    alacritty = {
+                        enabled = true,
+                        font = "12"
+                    },
+                },
             })
         end,
     },

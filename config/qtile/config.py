@@ -22,13 +22,13 @@ if qtile.core.name == 'x11':
     pad_size: int = 4
     battery_dim = {'width': 35, 'height': 15}
     status_notifier_dim = {'icon_size': 32, 'menu_width': 750}
-    group_box_dim = {'pad_x': 12, 'pad_y': 5, 'margin_y': 4, 'borderwidth': 5}
+    group_box_dim = {'pad_x': 4, 'pad_y': 5, 'margin_y': 4, 'borderwidth': 5}
 else:
     font_size: int = 24
     pad_size: int = 4
     battery_dim = {'width': 22, 'height': 10}
     status_notifier_dim = {'icon_size': 16, 'menu_width': 375}
-    group_box_dim = {'pad_x': 8, 'pad_y': 0, 'margin_y': 4, 'borderwidth': 2}
+    group_box_dim = {'pad_x': 2, 'pad_y': 0, 'margin_y': 4, 'borderwidth': 2}
 
 # Common command txts
 power_menu_cmd = f"rofi -show power-menu -modi power-menu:rofi-power-menu -theme {home}/.config/rofi/config/powermenu.rasi"
@@ -51,7 +51,7 @@ group_dict = {
 }
 
 group_names = list(group_dict.keys())
-group_labels = group_names
+group_labels = [' ' for _ in group_dict.values()]
 group_layouts = list(group_dict.values())
 
 for i in range(len(group_names)):
@@ -95,15 +95,6 @@ def window_to_next_group(qtile):
     if qtile.currentWindow is not None:
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
-
-
-def excess_txt(txt: str) -> str:
-    for string in ['firefox', 'brave', 'thunderbird']:
-        if string in txt.lower():
-            pre = string[0].capitalize()
-            return f'{pre}{string[1:]}'
-        else:
-            return txt
 
 
 keys = [
@@ -304,10 +295,28 @@ layouts = [
     floating_layout
 ]
 
+# CUSTOM FUNCS FOR WIDGETS
+
+
+def prog_instances_only(ori_name: str) -> str:
+    '''
+    For program names that are very long, display the program ID only.
+    '''
+    split_symbs = ['--', '-', '–']
+    new_name = ori_name
+
+    for split_symb in split_symbs:
+        if split_symb in new_name:
+            ori_split = new_name.split(split_symb)
+            new_name = ori_split[-1]
+
+    return new_name
 
 # WIDGETS FOR THE BAR
 
 # Initialization of persistent window objects
+
+
 vert_sep = widget.Sep(
     linewidth=1,
     padding=20,
@@ -347,11 +356,11 @@ memory_display = widget.Memory(
 
 date_widget = widget.Clock(
     font="JetBrainsMono NF",
-    foreground=colors['foreground'],
+    foreground=colors['blue'],
     background=colors['background'],
     fontsize=font_size,
     padding=1,
-    format=" %Y-%m-%d "
+    format=" %b %d  %H:%M"
 )
 
 clock_widget = widget.Clock(
@@ -411,7 +420,7 @@ mission_ctrl = widget.TextBox(
     fontsize=font_size,
     padding=pad_size,
     mouse_callbacks={'Button1': lazy.spawn("rofi -show drun"), 'Button3': lazy.spawn(show_window_cmd)},
-    text='  '
+    text='  '
 )
 
 power_btn = widget.TextBox(
@@ -441,6 +450,7 @@ launch_bar = widget.LaunchBar(
     fontsize=font_size,
     padding=pad_size,
     progs=[  # Accepts tuple in form (icon, cmd, descr)
+           (' ', 'rofi -show drun', 'Open launcher'),
            (' ', 'alacritty', 'Open Alacritty shell'),
            ('󰈹 ', 'firefox', 'Open Firefox web browser'),
            (' ', 'brave', 'Open Chromium web browser'),
@@ -469,45 +479,54 @@ def init_widgets_list(screen_id=1) -> list:
         padding_x=group_box_dim['pad_x'],
         borderwidth=group_box_dim['borderwidth'],
         disable_drag=True,
-        active=colors['foreground'],
-        inactive=colors['gray2'],
         rounded=False,
-        highlight_method="line",
-        highlight_color=colors['background'],
-        this_current_screen_border=colors['orange'],  # This screen active
-        this_screen_border=colors['gray2'],  # This screen inactive
-        other_screen_border=colors['foreground'],  # Other screen active
-        other_current_screen_border=colors['blue'],  # Other screen inactive
-        hide_unused=False,
+        highlight_method="block",
+        block_highlight_text_color=colors['orange'],  # Any active screen
+        highlight_color=colors['blue'],
+        inactive=colors['gray2'],
         foreground=colors['foreground'],
-        background=colors['background']
+        background=colors['background'],
+        this_current_screen_border=colors['background'],  # This screen active
+        this_screen_border=colors['background'],  # This screen inactive
+        other_current_screen_border=colors['background'],  # Other schreen active
+        other_screen_border=colors['background'],  # Other screen inactive
+        hide_unused=False,
+    )
+
+    group_id = widget.AGroupBox(
+        font="JetBrainsMono NF",
+        fontsize=font_size,
+        padding=pad_size,
+        margin=pad_size,
+        borderwidth=0,
+        background=colors['background'],
+        foreground=colors['orange'],
+        fmt='{}:'
     )
 
     window_wdg = widget.WindowName(
         foreground=colors['yellow'],
         background=colors['background'],
-        font='JetBrainsMono NF',
+        # font='JetBrainsMono NF',
+        font='Fira Sans',
         empty_group_string='ø',
-        fontsize=font_size,
+        fontsize=font_size + 4,
         padding=5,
         scroll=True,
         width=1000,
-        parse_text=excess_txt,
         mouse_callbacks={'Button1': lazy.spawn(show_window_cmd)},
+        parse_text=prog_instances_only,
     )
 
     widgets_list = [
-        mission_ctrl,
-        vert_sep,
         group_box,
         vert_sep,
         launch_bar,
         vert_sep,
-        window_wdg,
-        vert_sep,
+        group_id,
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
         vert_sep,
-        clock_widget,
+        window_wdg,
         vert_sep,
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
         vert_sep,
