@@ -420,7 +420,7 @@ mission_ctrl = widget.TextBox(
     fontsize=font_size,
     padding=pad_size,
     mouse_callbacks={'Button1': lazy.spawn("rofi -show drun"), 'Button3': lazy.spawn(show_window_cmd)},
-    text='  '
+    text='  ',
 )
 
 power_btn = widget.TextBox(
@@ -450,7 +450,6 @@ launch_bar = widget.LaunchBar(
     fontsize=font_size,
     padding=pad_size,
     progs=[  # Accepts tuple in form (icon, cmd, descr)
-           (' ', 'rofi -show drun', 'Open launcher'),
            (' ', 'alacritty', 'Open Alacritty shell'),
            ('󰈹 ', 'firefox', 'Open Firefox web browser'),
            (' ', 'brave', 'Open Chromium web browser'),
@@ -519,9 +518,11 @@ def init_widgets_list(screen_id=1) -> list:
     )
 
     widgets_list = [
-        group_box,
+        mission_ctrl,
         vert_sep,
         launch_bar,
+        vert_sep,
+        group_box,
         vert_sep,
         group_id,
         widget.Spacer(background=colors['clear'], length=bar.STRETCH),
