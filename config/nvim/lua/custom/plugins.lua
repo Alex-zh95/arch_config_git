@@ -46,7 +46,7 @@ local plugins = {
             "rcarriga/nvim-dap-ui",
             "theHamsta/nvim-dap-virtual-text",
             "nvim-telescope/telescope-dap.nvim",
-            "/nvim-neotest/nvim-nio",
+            "nvim-neotest/nvim-nio",
         },
         config = function()
             require("custom.configs.dap").setup()
@@ -98,12 +98,6 @@ local plugins = {
             require("zen-mode").setup({
                 window = {
                     width = 0.75
-                },
-                plugins = {
-                    alacritty = {
-                        enabled = true,
-                        font = "12"
-                    },
                 },
             })
         end,

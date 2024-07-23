@@ -103,14 +103,14 @@ keys = [
     Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
     Key([mod], "q", session_kill(), desc='Close window - shutdown menu if no apps running'),
-    Key([mod], "p", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
+    Key([mod], "e", lazy.spawn("pavucontrol"), desc="Launch pavucontrol"),
     Key([mod], "a", lazy.window.bring_to_front(), desc="Bring hidden floating windows behind to front"),
     Key([mod], "m", lazy.spawn(show_window_cmd), desc="Launch rofi window browser"),
     Key([mod], "c", lazy.spawn(calc_cmd), desc="Launch quick calculator"),
 
     # Screen movement
-    Key([mod], 'w', lazy.next_screen(), desc='Next monitor'),
-    Key([mod], "e", lazy.prev_screen(), desc='Prev monitor'),
+    Key([mod], 'o', lazy.next_screen(), desc='Next monitor'),
+    Key([mod], "p", lazy.prev_screen(), desc='Prev monitor'),
 
     # TOGGLE SPLIT FUNCTIONS FOR COLUMN/STACK LAYOUT
     Key([mod], "s", lazy.layout.toggle_split(), desc='Toggle column to stack'),
