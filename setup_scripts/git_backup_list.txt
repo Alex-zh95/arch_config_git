@@ -6,6 +6,7 @@ fcitx5
 gtk-2.0
 gtk-3.0
 gtk-4.0
+kitty
 Kvantum
 nvim
 qtile
@@ -16,4 +17,3 @@ rofi
 tmux
 sidefox
 spicetify
-wezterm
