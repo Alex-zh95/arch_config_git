@@ -98,7 +98,7 @@ def window_to_next_group(qtile):
 
 
 keys = [
-    Key([mod], "Return", lazy.spawn("alacritty"), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
     Key([mod], "space", lazy.spawn("rofi -show drun"), desc="Launch rofi launcher"),
     Key([mod], "i", lazy.spawn("hidraw-tog"), desc="Custom program to toggle touchpad"),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle full screen"),
@@ -450,7 +450,7 @@ launch_bar = widget.LaunchBar(
     fontsize=font_size,
     padding=pad_size,
     progs=[  # Accepts tuple in form (icon, cmd, descr)
-           (' ', 'alacritty', 'Open Alacritty shell'),
+           (' ', 'kitty', 'Open kitty shell'),
            ('󰈹 ', 'firefox', 'Open Firefox web browser'),
            (' ', 'brave', 'Open Chromium web browser'),
            ('󰊫 ', 'thunderbird', 'Open email'),

@@ -1,6 +1,6 @@
 local M = {}
 M.ui = {
-    theme = 'catppuccin',
+    theme = 'melange',
     statusline = {
         theme='default',
         separator_style='block',
@@ -8,7 +8,7 @@ M.ui = {
 
     -- Theme overrides
     changed_themes = {
-        catppuccin = {
+        melange = {
             base_16 = {
                 grey_fg = "#f0c6c6", -- Using a brighter color for comments
             },
