@@ -46,10 +46,10 @@ i3lock \
   --pass-media-keys \
   --pass-screen-keys \
   --pass-volume-keys \
-  --time-font="JetBrainsMono Nerd Font" \
-  --date-font="JetBrainsMono Nerd Font" \
-  --layout-font="JetBrainsMono Nerd Font" \
-  --verif-font="JetBrainsMono Nerd Font" \
-  --wrong-font="JetBrainsMono Nerd Font" \
-  --greeter-font="JetBrainsMono Nerd Font" \
+  --time-font="FiraCode-Retina" \
+  --date-font="FiraCode-Retina" \
+  --layout-font="FiraCode-Retina" \
+  --verif-font="FiraCode-Retina" \
+  --wrong-font="FiraCode-Retina" \
+  --greeter-font="FiraCode-Retina" \
 #

@@ -7,14 +7,13 @@ M.ui = {
     },
 
     -- Theme overrides
+    -- Brighter UI colors instead of gray
     changed_themes = {
         melange = {
-            base_16 = {
-                grey_fg = "#f0c6c6", -- Using a brighter color for comments
-            },
-
             base_30 = {
-                grey_fg = "#f0c6c6", -- Using a brighter color for comments
+                grey_fg = "#f0c6c6",
+                one_bg2 = "#75706b",
+                line = "#75706b",
             },
         }
     },

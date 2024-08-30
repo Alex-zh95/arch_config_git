@@ -106,6 +106,8 @@ wget
 xorg-server
 xorg-apps
 xorg-xinit
+xsel
+xclip
 
 ###extras for vim plugins
 npm
@@ -319,7 +321,7 @@ zsh-completions
 zsh-syntax-highlighting
 
 # Battery optimization tools
-tlp
+# tlp
 tuxedo-control-center-bin
 
 ###########################################################################
@@ -464,9 +466,6 @@ youtube-dl-gui-git
 
 # Interception tools - for remapping key-inputs in particular for capslock
 interception-caps2esc
-
-# Cleanup tool
-bleachbit
 
 # Spotify
 spotify
