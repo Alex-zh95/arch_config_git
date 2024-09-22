@@ -15,5 +15,3 @@ sxhkd
 ranger
 rofi
 tmux
-sidefox
-spicetify

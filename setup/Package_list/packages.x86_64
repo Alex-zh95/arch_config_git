@@ -461,14 +461,11 @@ gufw
 # Rebuild-detector: checks which Arch packages (particularly for AUR) need rebuilding
 rebuild-detector
 
-# Youtube-dl-git - via Arcolinux repo
+# Media
 youtube-dl-gui-git
+spotify
 
 # Interception tools - for remapping key-inputs in particular for capslock
 interception-caps2esc
-
-# Spotify
-spotify
-spicetify-cli
 
 ## EOF
