@@ -358,6 +358,21 @@ Description="Tastatur - Russisch - Russisch (erweitert mit tatarischen Buchstabe
 Language=ru
 Label="ru (rtu)"
 
+[keyboard-ru-diktor]
+Description="Tastatur - Russisch - Russisch (Diktor)"
+Language=ru
+Label=diktor
+
+[keyboard-ru-ruintl_ru]
+Description="Tastatur - Russisch - Russisch (international, RU)"
+Language=ru
+Label="ru (ruintl_ru)"
+
+[keyboard-ru-ruintl_en]
+Description="Tastatur - Russisch - Russisch (international, EN)"
+Language=en
+Label="en (ruintl_en)"
+
 [keyboard-br]
 Description="Tastatur - Portugiesisch (Brasilien)"
 Language=pt
@@ -2714,12 +2729,12 @@ Language=fr
 Label="fr (dvorak)"
 
 [keyboard-fr-ergol]
-Description="Tastatur - Französisch - French (Ergo‑L)"
+Description="Tastatur - Französisch - Französisch (Ergo-L)"
 Language=fr
 Label="fr (ergol)"
 
 [keyboard-fr-ergol_iso]
-Description="Tastatur - Französisch - French (Ergo‑L, ISO variant)"
+Description="Tastatur - Französisch - Französisch (Ergo-L, ISO-Variante)"
 Language=fr
 Label="fr (ergol_iso)"
 
@@ -3289,12 +3304,12 @@ Language=hu
 Label="oldhun(lig) (oldhunlig)"
 
 [keyboard-hu-oldhun_sk_sh]
-Description="Tastatur - Ungarisch - Old Hungarian (Carpathian Highlands, S as Sh)"
+Description="Tastatur - Ungarisch - Altungarisch (Karpatengebiet, S als Sh)"
 Language=hu
 Label="oldhun(SK,Sh) (oldhun_sk_sh)"
 
 [keyboard-hu-oldhun_sk_sz]
-Description="Tastatur - Ungarisch - Old Hungarian (Carpathian Highlands, S as Sz)"
+Description="Tastatur - Ungarisch - Altungarisch (Karpatengebiet, S als Sz)"
 Language=hu
 Label="oldhun(SK,Sz) (oldhun_sk_sz)"
 
