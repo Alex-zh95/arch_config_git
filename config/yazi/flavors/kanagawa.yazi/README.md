@@ -3,7 +3,7 @@
 </div>
 
 <h3 align="center">
-	Sunset Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
+    Kanagawa Flavor for <a href="https://github.com/sxyazi/yazi">Yazi</a>
 </h3>
 
 ## 👀 Preview
@@ -12,19 +12,17 @@
 
 ## 🎨 Installation
 
-
 ```bash
-ya pack -a PinThePenguine/sunset
+ya pack -a dangooddd/kanagawa
 ```
 
 ## ⚙️ Usage
 
-Add the these lines to your `theme.toml` configuration file to use it:
-
+Add these lines to your `theme.toml` configuration file to use it:
 
 ```toml
 [flavor]
-use = "sunset"
+dark = "kanagawa"
 ```
 
 ## 📜 License

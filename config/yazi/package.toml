@@ -2,4 +2,4 @@
 deps = []
 
 [flavor]
-deps = [{ use = "PinThePenguine/sunset", rev = "181acd4" }]
+deps = [{ use = "dangooddd/kanagawa", rev = "240194c" }]
