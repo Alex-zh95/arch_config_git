@@ -340,7 +340,6 @@ nordzy-icon-theme-git
 mkinitcpio-openswap
 
 ###utilities-repo
-alacritty
 kitty
 zoxide
 tmux
@@ -422,7 +421,7 @@ autorandr
 python-dbus-next
 
 # Terminal tools - file manager, fuzzy search and image display
-ranger
+yazi
 fzf
 
 # Email client and file sync

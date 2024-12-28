@@ -24,7 +24,7 @@ if qtile.core.name == 'x11':
     status_notifier_dim = {'icon_size': 32, 'menu_width': 750}
     group_box_dim = {'pad_x': 4, 'pad_y': 5, 'margin_y': 4, 'borderwidth': 5}
 else:
-    font_size: int = 24
+    font_size: int = 12
     pad_size: int = 4
     battery_dim = {'width': 22, 'height': 10}
     status_notifier_dim = {'icon_size': 16, 'menu_width': 375}

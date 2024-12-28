@@ -17,7 +17,7 @@ window {
     border:                         2px;
     border-color:                   @BDR;
     border-radius:                  10px;
-    width:                          2000px;
+    width:                          800px;
     anchor:                         center;
     x-offset:                       0;
     y-offset:                       0;
@@ -46,7 +46,7 @@ entry {
     placeholder-color:              @FG;
     expand:                         true;
     horizontal-align:               0;
-    placeholder:                    "Search...";
+    placeholder:                    "";
     blink:                          true;
     border:                  	    0px 0px 2px 0px;
     border-color:                   @BDR;
@@ -76,7 +76,7 @@ case-indicator {
 
 listview {
     background-color:               @BG;
-    columns:                        3;
+    columns:                        1;
     lines:			                10;
     spacing:                        4px;
     cycle:                          false;
@@ -87,8 +87,8 @@ listview {
 mainbox {
     background-color:               @BG;
     children:                       [ inputbar, listview ];
-    spacing:                        15px;
-    padding:                        15px;
+    spacing:                        10px;
+    padding:                        10px;
 }
 
 element {
@@ -104,7 +104,7 @@ element-icon {
     text-color:       		        inherit;
     horizontal-align:               0.5;
     vertical-align:                 0.5;
-    size:                           24px;
+    size:                           12px;
     border:                         0px;
 }
 
