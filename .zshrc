@@ -128,9 +128,9 @@ fi
 ### ALIASES ###
 
 #list
-alias ls='exa --color=auto --sort=extension --group-directories-first'
-alias ll='exa -lhF --icons --sort=extension --group-directories-first'
-alias lla='exa -lahF --icons --sort=extension --group-directories-first'
+alias ls='eza --color=auto --sort=extension --group-directories-first'
+alias ll='eza -lhF --icons --sort=extension --group-directories-first'
+alias lla='eza -lahF --icons --sort=extension --group-directories-first'
 alias l.="ls -A --sort=extension --group-directories-first | egrep '^\.'"
 
 #Vim
@@ -412,7 +412,6 @@ gitchanged () {
 alias personal='cp -Rf /personal/* ~'
 
 #screens
-alias laptoponly='~/.config/qtile/Laptop_Screen_Only.sh'
 alias screenout='~/.config/qtile/screens.py'
 alias asc='~/.config/qtile/auto_scr.sh'
 
@@ -424,24 +423,12 @@ alias pdb="python3 -m pdb"
 
 eval "$(zoxide init --cmd cd zsh)"
 
-#create a file called .zshrc-personal and put all your personal aliases
-#in there. They will not be overwritten by skel.
-
-[[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
-
-
-# reporting tools - install when not installed
-#neofetch
-#screenfetch
-#alsi
-#paleofetch
-#fetch
-#hfetch
-#sfetch
-#ufetch
-#ufetch-arco
-#pfetch
-#sysinfo
-#sysinfo-retro
-#cpufetch
-#colorscript random
+# Shell wrapper for yazi to change dir to current on exit
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
